@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.ui.dashboard
+package com.nijhoomt.ntrental
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,22 +8,21 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nijhoomt.ntrental.R
 
-class DashboardFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        searchViewModel =
+            ViewModelProviders.of(this).get(SearchViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        searchViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
