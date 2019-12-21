@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_people_black_24dp"
         android:title="@string/title_tenants" />
 
+    <item
+        android:id="@+id/navigation_documents"
+        android:icon="@drawable/ic_documents_black_24dp"
+        android:title="@string/title_documents" />
+
 </menu>

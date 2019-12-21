@@ -1,13 +1,17 @@
 package com.nijhoomt.ntrental
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nijhoomt.ntrental.more.MoreActivity
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +29,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_dashboard,
                 R.id.navigation_reports,
-                R.id.navigation_tenants
+                R.id.navigation_tenants,
+                R.id.navigation_documents
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -35,5 +40,20 @@ class MainActivity : AppCompatActivity() {
     private fun setUpToolbar() {
         val customToolbar = custom_toolbar as Toolbar
         setSupportActionBar(customToolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.more_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.btn_more -> {
+                startActivity(Intent(this, MoreActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

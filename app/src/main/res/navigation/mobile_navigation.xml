@@ -22,4 +22,10 @@
         android:name="com.nijhoomt.ntrental.tenants.TenantsFragment"
         android:label="@string/title_tenants"
         tools:layout="@layout/fragment_tenants" />
+
+    <fragment
+        android:id="@+id/navigation_documents"
+        android:name="com.nijhoomt.ntrental.documents.DocumentsFragment"
+        android:label="@string/title_documents"
+        tools:layout="@layout/fragment_documents" />
 </navigation>
