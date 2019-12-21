@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental
+package com.nijhoomt.ntrental.updates
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,21 +8,22 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.nijhoomt.ntrental.R
 
-class SearchFragment : Fragment() {
+class UpdatesFragment : Fragment() {
 
-    private lateinit var searchViewModel: SearchViewModel
+    private lateinit var updatesViewModel: UpdatesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        searchViewModel =
-            ViewModelProviders.of(this).get(SearchViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_search, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        searchViewModel.text.observe(this, Observer {
+        updatesViewModel =
+            ViewModelProviders.of(this).get(UpdatesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_updates, container, false)
+        val textView: TextView = root.findViewById(R.id.text_home)
+        updatesViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

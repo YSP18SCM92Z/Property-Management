@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_search">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.nijhoomt.ntrental.UpdatesFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_updates" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.nijhoomt.ntrental.SearchFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_search"
+        android:name="com.nijhoomt.ntrental.search.SearchFragment"
+        android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.nijhoomt.ntrental.SavedHomesFragment"
-        android:label="@string/title_notifications"
+        android:id="@+id/navigation_updates"
+        android:name="com.nijhoomt.ntrental.updates.UpdatesFragment"
+        android:label="@string/title_updates"
+        tools:layout="@layout/fragment_updates" />
+
+    <fragment
+        android:id="@+id/navigation_savedhomes"
+        android:name="com.nijhoomt.ntrental.savedhomes.SavedHomesFragment"
+        android:label="@string/title_savedhomes"
         tools:layout="@layout/fragment_savedhomes" />
 </navigation>
