@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.search
+package com.nijhoomt.ntrental.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 
-class SearchFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
-    private lateinit var searchViewModel: SearchViewModel
+    private lateinit var dashboardViewModel: DashboardViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        searchViewModel =
-            ViewModelProviders.of(this).get(SearchViewModel::class.java)
+        dashboardViewModel =
+            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        searchViewModel.text.observe(this, Observer {
+        dashboardViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
