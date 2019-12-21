@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.ui.dashboard
+package com.nijhoomt.ntrental.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
