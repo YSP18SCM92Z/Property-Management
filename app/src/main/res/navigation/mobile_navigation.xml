@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_reports">
-
-    <fragment
-        android:id="@+id/navigation_reports"
-        android:name="com.nijhoomt.ntrental.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_search" />
+    app:startDestination="@+id/navigation_dashboard">
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.nijhoomt.ntrental.updates.UpdatesFragment"
-        android:label="@string/title_updates"
-        tools:layout="@layout/fragment_updates" />
+        android:name="com.nijhoomt.ntrental.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_reports"
+        android:name="com.nijhoomt.ntrental.reports.ReportsFragment"
+        android:label="@string/title_reports"
+        tools:layout="@layout/fragment_reports" />
 
     <fragment
         android:id="@+id/navigation_tenants"
-        android:name="com.nijhoomt.ntrental.savedhomes.SavedHomesFragment"
-        android:label="@string/title_savedhomes"
-        tools:layout="@layout/fragment_savedhomes" />
+        android:name="com.nijhoomt.ntrental.tenants.TenantsFragment"
+        android:label="@string/title_tenants"
+        tools:layout="@layout/fragment_tenants" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.savedhomes
+package com.nijhoomt.ntrental.tenants
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 
-class SavedHomesFragment : Fragment() {
+class TenantsFragment : Fragment() {
 
-    private lateinit var savedHomesViewModel: SavedHomesViewModel
+    private lateinit var savedHomesViewModel: TenantsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,8 +20,8 @@ class SavedHomesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         savedHomesViewModel =
-            ViewModelProviders.of(this).get(SavedHomesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_savedhomes, container, false)
+            ViewModelProviders.of(this).get(TenantsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_tenants, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
         savedHomesViewModel.text.observe(this, Observer {
             textView.text = it

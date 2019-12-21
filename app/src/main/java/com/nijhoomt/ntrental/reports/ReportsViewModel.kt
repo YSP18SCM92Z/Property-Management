@@ -1,13 +1,13 @@
-package com.nijhoomt.ntrental.updates
+package com.nijhoomt.ntrental.reports
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class UpdatesViewModel : ViewModel() {
+class ReportsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is Reports Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.updates
+package com.nijhoomt.ntrental.reports
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 
-class UpdatesFragment : Fragment() {
+class ReportsFragment : Fragment() {
 
-    private lateinit var updatesViewModel: UpdatesViewModel
+    private lateinit var reportsViewModel: ReportsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        updatesViewModel =
-            ViewModelProviders.of(this).get(UpdatesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_updates, container, false)
+        reportsViewModel =
+            ViewModelProviders.of(this).get(ReportsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_reports, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        updatesViewModel.text.observe(this, Observer {
+        reportsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
