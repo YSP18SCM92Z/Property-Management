@@ -35,7 +35,6 @@
         android:fontFamily="@font/kollektif"
         android:text="Normal"
         android:textColor="@color/colorAccent"
-
         android:textSize="32sp" />
 
     <TextView
@@ -46,6 +45,5 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorNormalText"
         android:textSize="32sp" />
-
 
 </LinearLayout>
