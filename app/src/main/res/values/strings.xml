@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Property Spot</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_reports">Reports</string>
@@ -9,6 +9,10 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="register">Sign up</string>
+    <string name="logintext">Login to your account</string>
+    <string name="createaccount">Create an account</string>
+    <string name="forgotyourpassword">Forgot your password?</string>
+
 
 </resources>

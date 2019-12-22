@@ -1,15 +1,13 @@
-package com.nijhoomt.ntrental.login_register
+package com.nijhoomt.ntrental.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nijhoomt.ntrental.R
 
-class LoginRegisterActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_register)
-
-
+        setContentView(R.layout.activity_login)
     }
 }
