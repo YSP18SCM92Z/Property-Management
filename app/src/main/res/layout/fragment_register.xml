@@ -21,11 +21,20 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:textSize="24sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LoginTextInputLayoutStyle"
+            android:text="@string/createaccount"
+            android:textColor="@color/colorNormalText"
+            android:layout_gravity="center_horizontal"/>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/landlord_property_manager_email">
