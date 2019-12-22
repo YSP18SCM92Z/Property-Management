@@ -6,9 +6,16 @@
     <string name="title_documents">Documents</string>
     <string name="title_more">More</string>
 
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Landlord</string>
+    <string name="tab_text_2">Property Manager</string>
+    <string name="tab_text_3">Tenant</string>
+    <string name="tab_text_4">Vendor</string>
+
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="user_email">User Email</string>
+    <string name="landlord_property_manager_email">Landlord/Property Manager Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 
 </resources>
