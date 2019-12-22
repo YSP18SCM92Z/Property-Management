@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.register.ui.main
+package com.nijhoomt.ntrental.register
 
 import android.content.Context
 import androidx.fragment.app.Fragment

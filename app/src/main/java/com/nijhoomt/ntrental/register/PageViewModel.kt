@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.register.ui.main
+package com.nijhoomt.ntrental.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

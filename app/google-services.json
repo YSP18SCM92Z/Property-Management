@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1065517332115",
+    "firebase_url": "https://propertyspot-42495.firebaseio.com",
+    "project_id": "propertyspot-42495",
+    "storage_bucket": "propertyspot-42495.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065517332115:android:0074cd31a32bec5aaeff66",
+        "android_client_info": {
+          "package_name": "com.nijhoomt.ntrental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065517332115-c8eesrvs1smebt9qusbl10kqvhp6h06l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nijhoomt.ntrental",
+            "certificate_hash": "723fa4b025df610c3125633ae8948fa7fc90774b"
+          }
+        },
+        {
+          "client_id": "1065517332115-2m0c47gal8pj3ukg6ia57hroq3bu1m6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxqYiySSVclTHZPWRVUigKYCrloTcOYm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065517332115-2m0c47gal8pj3ukg6ia57hroq3bu1m6u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
