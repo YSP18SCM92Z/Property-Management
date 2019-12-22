@@ -5,8 +5,7 @@
     <item
         android:id="@+id/btn_more"
         android:icon="@drawable/ic_more_horiz_white_24dp"
-        android:iconTint="@color/white"
-        android:title="More"
+        android:title="@string/title_more"
         app:showAsAction="always" />
 
 </menu>
