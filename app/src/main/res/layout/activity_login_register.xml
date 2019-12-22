@@ -10,22 +10,22 @@
     android:weightSum="2"
     tools:targetApi="lollipop">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
         <ImageView
             android:id="@+id/iv_login_register_logo"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +35,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login_register_login"
             android:layout_width="match_parent"
+            style="@style/ButtonText"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="50dp"
@@ -49,6 +50,7 @@
             android:layout_below="@+id/btn_login_register_login"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
+            style="@style/ButtonText"
             android:text="@string/register"
             app:cornerRadius="5dp" />
 
