@@ -12,7 +12,7 @@ class LoginRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_register)
-
+      
         btn_login_register_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
