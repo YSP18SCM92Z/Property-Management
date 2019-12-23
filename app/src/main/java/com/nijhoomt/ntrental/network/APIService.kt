@@ -1,10 +1,19 @@
 package com.nijhoomt.ntrental.network
 
-class APIService {
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-    val BASE_URL = "http://rjtmobile.com/aamir/property-mgmt/"
+private const val BASE_URL = "http://rjtmobile.com/aamir/property-mgmt/"
 
-    val FILE_NAME_LOGIN = "pro_mgt_login.php"
+private val retrofit = Retrofit.Builder()
 
-    val FINAL_URL = ""
+    /** Add converter factory for serialization and deserialization of objects. */
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
+object PropertyManagementAPI {
+    val retrofitService: APIInterface by lazy {
+        retrofit.create(APIInterface::class.java)
+    }
 }
