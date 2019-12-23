@@ -1,6 +1,7 @@
 package com.nijhoomt.ntrental.login
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,7 +40,7 @@ class LoginViewModel(
 
         call.enqueue(object : Callback<LoginObject>{
             override fun onFailure(call: Call<LoginObject>, t: Throwable) {
-                Toast.makeText(application, "Response Failed: ${t.message}", Toast.LENGTH_LONG).show()
+                Log.e("Nijhoom", t.message)
             }
 
             override fun onResponse(call: Call<LoginObject>, response: Response<LoginObject>) {

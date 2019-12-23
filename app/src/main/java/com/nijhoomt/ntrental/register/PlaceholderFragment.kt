@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import kotlinx.android.synthetic.main.fragment_register.*
+import kotlinx.android.synthetic.main.fragment_register.view.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -42,8 +43,20 @@ class PlaceholderFragment : Fragment() {
 
             if (it == 3) {
                 tiet_register_landlord_property_manager_email.visibility = View.VISIBLE
+
+                root.btn_register_register.setOnClickListener{
+
+                    val email = tiet_register_user_email.text.toString()
+                    val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
+                    val password = tiet_register_password.text.toString()
+                    val account_for = it
+                }
             }
         })
+
+
+
+
 
 
 
