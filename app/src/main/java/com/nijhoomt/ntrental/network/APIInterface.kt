@@ -1,5 +1,6 @@
 package com.nijhoomt.ntrental.network
 
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -22,5 +23,13 @@ interface APIInterface {
         @Query("password") password: String,
         @Query("account_for") account_for: String
     ) : Call<String>
+
+//    @POST("$FILE_NAME_REGISTER")
+//    fun postNewUserRxJavaAsync(
+//        @Query("email") email: String,
+//        @Query("landlord_email") landlord_email: String,
+//        @Query("password") password: String,
+//        @Query("account_for") account_for: String
+//    ) : Single<String>
 
 }
