@@ -1,6 +1,5 @@
 package com.nijhoomt.ntrental.register
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nijhoomt.ntrental.model.RegisterCredential

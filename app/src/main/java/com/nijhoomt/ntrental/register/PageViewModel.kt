@@ -1,6 +1,5 @@
 package com.nijhoomt.ntrental.register
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -43,12 +42,11 @@ class PageViewModel(
     }
 
     init {
-
         initiateRegister()
     }
 
     private fun initiateRegister() {
-        val call = PropertyManagementAPI.retrofitService
+        val call = PropertyManagementAPI.retrofitRegisterService
             .postNewUserAsync(email = registerCredential.email,
                 landlord_email = registerCredential.landlored_email,
                 password = registerCredential.password,

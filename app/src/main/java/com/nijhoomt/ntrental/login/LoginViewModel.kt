@@ -2,7 +2,6 @@ package com.nijhoomt.ntrental.login
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +32,7 @@ class LoginViewModel(
 
     private fun initiateLogin() {
         val call = PropertyManagementAPI
-            .retrofitService
+            .retrofitLoginService
             .postUserAsync(
                 password = loginCredential.password,
                 email = loginCredential.email)

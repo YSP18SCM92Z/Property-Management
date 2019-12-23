@@ -13,8 +13,7 @@ interface APIInterface {
     fun postUserAsync(
         @Query("email") email: String,
         @Query("password") password: String
-    )
-            : Call<LoginObject>
+    ) : Call<LoginObject>
 
     @POST("$FILE_NAME_REGISTER")
     fun postNewUserAsync(
@@ -22,7 +21,6 @@ interface APIInterface {
         @Query("landlord_email") landlord_email: String,
         @Query("password") password: String,
         @Query("account_for") account_for: String
-
     ) : Call<String>
 
 }

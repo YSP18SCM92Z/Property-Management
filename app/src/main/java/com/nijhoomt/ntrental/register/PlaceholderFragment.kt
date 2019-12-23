@@ -42,11 +42,16 @@ class PlaceholderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_register, container, false)
-        val textView: TextView = view.findViewById(R.id.section_label)
 
+        if (arguments?.getInt(ARG_SECTION_NUMBER) == 3) {
+            view.tiet_register_landlord_property_manager_email.visibility = View.VISIBLE
+        }
+
+        // You need the tabTitle or the index to programmatically hide/show
         view.btn_register_register.setOnClickListener {
 
             if (arguments?.getInt(ARG_SECTION_NUMBER) == 3){
+
                 val email = tiet_register_user_email.text.toString()
                 val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
                 val password = tiet_register_password.text.toString()
@@ -114,74 +119,6 @@ class PlaceholderFragment : Fragment() {
                 })
             }
         }
-//        pageViewModel.tabTitle.observe(this, Observer<String> { it1 ->
-//
-//            if (it1 == resources.getString(R.string.tab_text_3)) {
-//
-//                tiet_register_landlord_property_manager_email.visibility = View.VISIBLE
-//
-//                view.btn_register_register.setOnClickListener { it2 ->
-//
-//                    val email = tiet_register_user_email.text.toString()
-//                    val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
-//                    val password = tiet_register_password.text.toString()
-//                    val account_for = it1
-//
-//                    val registerCredential = RegisterCredential(
-//                        email, landlord_email, password, account_for
-//                    )
-//
-//                    val pageViewModelFactory = PageViewModelFactory(
-//                        registerCredential = registerCredential
-//                    )
-//
-//                    val pageViewModel =
-//                        ViewModelProviders
-//                            .of(this, pageViewModelFactory)
-//                            .get(PageViewModel::class.java)
-//
-//                    pageViewModel.responseMessage.observe(this, Observer {
-//                        Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
-//                        val intent = Intent(view.context, LoginActivity::class.java)
-//                        startActivity(intent)
-//                    })
-//                }
-//            } else {
-//
-//                view.btn_register_register.setOnClickListener { it2 ->
-//
-//                    val email = tiet_register_user_email.text.toString()
-//                    val password = tiet_register_password.text.toString()
-//                    val account_for = it1
-//
-//                    val registerCredential = RegisterCredential(
-//                        email, "", password, account_for
-//                    )
-//
-//                    val pageViewModelFactory = PageViewModelFactory(
-//                        registerCredential = registerCredential
-//                    )
-//
-//                    val pageViewModel =
-//                        ViewModelProviders
-//                            .of(this, pageViewModelFactory)
-//                            .get(PageViewModel::class.java)
-//
-//                    pageViewModel.responseMessage.observe(this, Observer {
-//                        Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
-//                        val intent = Intent(view.context, LoginActivity::class.java)
-//                        startActivity(intent)
-//                    })
-//                }
-//            }
-//        })
-
-//        pageViewModel.index.observe(this, Observer<Int> {
-//            textView.text = it.toString()
-//
-//
-//        })
-
         return view
     }
 
