@@ -2,7 +2,6 @@ package com.nijhoomt.ntrental.register
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PageViewModel(
-    private val registerCredential: RegisterCredential,
-    private val application: Application
+    private val registerCredential: RegisterCredential
 ) : ViewModel() {
 
 //    private val _index = MutableLiveData<Int>()
@@ -34,6 +32,14 @@ class PageViewModel(
 
     fun setIndex(index: Int) {
         _index.value = index
+    }
+
+    private val _tabTitle = MutableLiveData<String>()
+    val tabTitle: LiveData<String>
+        get() = _tabTitle
+
+    fun setTabTitle(tabTitle: String?) {
+        _tabTitle.value =  tabTitle
     }
 
     init {
@@ -59,4 +65,5 @@ class PageViewModel(
 
         })
     }
+
 }
