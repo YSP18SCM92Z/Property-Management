@@ -6,10 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.RegisterCredential
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,5 +85,7 @@ class PageViewModel(
 //                    Log.e("Nijhoom", e.message)
 //                }
 //            })
+//
+//         val call needs to be clear() or dispose if you plan to use it
     }
 }

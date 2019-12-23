@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.tenants
+package com.nijhoomt.ntrental.todo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 
-class TenantsFragment : Fragment() {
+class ToDoFragment : Fragment() {
 
-    private lateinit var savedHomesViewModel: TenantsViewModel
+    private lateinit var toDoViewModel: ToDoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        savedHomesViewModel =
-            ViewModelProviders.of(this).get(TenantsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_tenants, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        savedHomesViewModel.text.observe(this, Observer {
+        toDoViewModel =
+            ViewModelProviders.of(this).get(ToDoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_todo, container, false)
+        val textView: TextView = root.findViewById(R.id.text_todo)
+        toDoViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

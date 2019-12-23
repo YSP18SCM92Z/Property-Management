@@ -12,9 +12,9 @@
         android:title="@string/title_reports" />
 
     <item
-        android:id="@+id/navigation_tenants"
-        android:icon="@drawable/ic_people_black_24dp"
-        android:title="@string/title_tenants" />
+        android:id="@+id/navigation_todo"
+        android:icon="@drawable/ic_featured_play_list_black_24dp"
+        android:title="@string/title_todo" />
 
     <item
         android:id="@+id/navigation_documents"

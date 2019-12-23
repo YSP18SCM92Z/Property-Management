@@ -12,7 +12,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.network.LoginObject
 import kotlinx.android.synthetic.main.custom_toolbar.*
@@ -24,11 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-
-
-
         setUpToolbar()
-
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
@@ -37,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_dashboard,
                 R.id.navigation_reports,
-                R.id.navigation_tenants,
+                R.id.navigation_todo,
                 R.id.navigation_documents
             )
         )
