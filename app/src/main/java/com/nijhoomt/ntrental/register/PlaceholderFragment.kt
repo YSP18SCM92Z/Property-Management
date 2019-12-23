@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,22 +20,6 @@ import kotlinx.android.synthetic.main.fragment_register.view.*
  */
 class PlaceholderFragment : Fragment() {
 
-    private lateinit var pageViewModel: PageViewModel
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
-//
-//            // Since what we pass is: position + 1, then
-//            // 1 >> Landlord
-//            // 2 >> Property Manager
-//            // 3 >> Tenant
-//            // 4 >> Vendor
-//            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-//            setTabTitle(arguments?.getString(ARG_SECTION_TITLE))
-//        }
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,77 +32,159 @@ class PlaceholderFragment : Fragment() {
 
         // You need the tabTitle or the index to programmatically hide/show
         view.btn_register_register.setOnClickListener {
-
-            if (arguments?.getInt(ARG_SECTION_NUMBER) == 3){
-
-                val email = tiet_register_user_email.text.toString()
-                val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
-                val password = tiet_register_password.text.toString()
-                val account_for = arguments?.getString(ARG_SECTION_TITLE).toString()
-
-                val registerCredential = RegisterCredential(
-                    email, landlord_email, password, account_for
-                )
-
-                val pageViewModelFactory = PageViewModelFactory(
-                    registerCredential = registerCredential
-                )
-
-                val pageViewModel =
-                    ViewModelProviders
-                        .of(this, pageViewModelFactory)
-                        .get(PageViewModel::class.java).apply {
-
-                            // Since what we pass is: position + 1, then
-                            // 1 >> Landlord
-                            // 2 >> Property Manager
-                            // 3 >> Tenant
-                            // 4 >> Vendor
-                            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-                            setTabTitle(arguments?.getString(ARG_SECTION_TITLE))
-                        }
-
-                pageViewModel.responseMessage.observe(this, Observer {
-                    Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
-                    val intent = Intent(view.context, LoginActivity::class.java)
-                    startActivity(intent)
-                })
+            if (arguments?.getInt(ARG_SECTION_NUMBER) == 3) {
+                validateTenantUserInputs(view)
             }
+            // Any other tabs
             else {
-                val email = tiet_register_user_email.text.toString()
-                val password = tiet_register_password.text.toString()
-                val account_for = arguments?.getString(ARG_SECTION_TITLE).toString()
-
-                val registerCredential = RegisterCredential(
-                    email, "", password, account_for
-                )
-
-                val pageViewModelFactory = PageViewModelFactory(
-                    registerCredential = registerCredential
-                )
-
-                val pageViewModel =
-                    ViewModelProviders
-                        .of(this, pageViewModelFactory)
-                        .get(PageViewModel::class.java).apply {
-
-                            // Since what we pass is: position + 1, then
-                            // 1 >> Landlord
-                            // 2 >> Property Manager
-                            // 3 >> Tenant
-                            // 4 >> Vendor
-                            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-                            setTabTitle(arguments?.getString(ARG_SECTION_TITLE))
-                        }
-
-                pageViewModel.responseMessage.observe(this, Observer {
-                    Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
-                    val intent = Intent(view.context, LoginActivity::class.java)
-                    startActivity(intent)
-                })
+                validateOtherTabUserInputs(view)
             }
         }
         return view
+    }
+
+    private fun validateOtherTabUserInputs(view: View) {
+        if (view.tiet_register_user_email.text.toString() == "" ||
+            view.tiet_register_password.text.toString() == "" ||
+            view.tiet_register_confirm_password.text.toString() == ""
+        ) {
+
+
+            if (view.tiet_register_user_email.text.toString() == "") {
+                view.tiet_register_user_email.error =
+                    "User Email field is required!"
+            }
+
+            if (view.tiet_register_password.text.toString() == "") {
+                view.tiet_register_password.error =
+                    "Password field is required!"
+            }
+
+            if (view.tiet_register_confirm_password.text.toString() == "") {
+                view.tiet_register_confirm_password.error =
+                    "Confirm Password field is required!"
+            }
+
+        }
+        // Password not match
+        else if (view.tiet_register_password.text.toString() !=
+            view.tiet_register_confirm_password.text.toString()
+        ) {
+
+            view.tiet_register_confirm_password.error =
+                "Password does not match!"
+        } else {
+            processOtherTabs(view)
+        }
+    }
+
+    private fun validateTenantUserInputs(view: View) {
+        if (view.tiet_register_landlord_property_manager_email.text.toString() == "" ||
+            view.tiet_register_user_email.text.toString() == "" ||
+            view.tiet_register_password.text.toString() == "" ||
+            view.tiet_register_confirm_password.text.toString() == ""
+        ) {
+
+            if (view.tiet_register_landlord_property_manager_email.text.toString() == "") {
+                view.tiet_register_landlord_property_manager_email.error =
+                    "Landlord/Property Manager field is required!"
+            }
+
+            if (view.tiet_register_user_email.text.toString() == "") {
+                view.tiet_register_user_email.error =
+                    "User Email field is required!"
+            }
+
+            if (view.tiet_register_password.text.toString() == "") {
+                view.tiet_register_password.error =
+                    "Password field is required!"
+            }
+
+            if (view.tiet_register_confirm_password.text.toString() == "") {
+                view.tiet_register_confirm_password.error =
+                    "Confirm Password field is required!"
+            }
+
+        }
+        // Password not match
+        else if (view.tiet_register_password.text.toString() !=
+            view.tiet_register_confirm_password.text.toString()
+        ) {
+
+            view.tiet_register_confirm_password.error =
+                "Password does not match!"
+        } else {
+            processTenantTab(view)
+        }
+    }
+
+    private fun processOtherTabs(view: View) {
+        val email = tiet_register_user_email.text.toString()
+        val password = tiet_register_password.text.toString()
+        val account_for = arguments?.getString(ARG_SECTION_TITLE).toString()
+
+        val registerCredential = RegisterCredential(
+            email, "", password, account_for
+        )
+
+        val pageViewModelFactory = PageViewModelFactory(
+            registerCredential = registerCredential
+        )
+
+        val pageViewModel =
+            ViewModelProviders
+                .of(this, pageViewModelFactory)
+                .get(PageViewModel::class.java).apply {
+
+                    // Since what we pass is: position + 1, then
+                    // 1 >> Landlord
+                    // 2 >> Property Manager
+                    // 3 >> Tenant
+                    // 4 >> Vendor
+                    setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+                    setTabTitle(arguments?.getString(ARG_SECTION_TITLE))
+                }
+
+        pageViewModel.responseMessage.observe(this, Observer {
+            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
+            val intent = Intent(view.context, LoginActivity::class.java)
+            startActivity(intent)
+        })
+    }
+
+    private fun processTenantTab(view: View) {
+        val email = tiet_register_user_email.text.toString()
+        val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
+        val password = tiet_register_password.text.toString()
+        val account_for = arguments?.getString(ARG_SECTION_TITLE).toString()
+
+        val registerCredential = RegisterCredential(
+            email, landlord_email, password, account_for
+        )
+
+        val pageViewModelFactory = PageViewModelFactory(
+            registerCredential = registerCredential
+        )
+
+        val pageViewModel =
+            ViewModelProviders
+                .of(this, pageViewModelFactory)
+                .get(PageViewModel::class.java).apply {
+
+                    // Since what we pass is: position + 1, then
+                    // 1 >> Landlord
+                    // 2 >> Property Manager
+                    // 3 >> Tenant
+                    // 4 >> Vendor
+                    setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+                    setTabTitle(arguments?.getString(ARG_SECTION_TITLE))
+                }
+
+        pageViewModel.responseMessage.observe(this, Observer {
+            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
+            val intent = Intent(view.context, LoginActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     companion object {
