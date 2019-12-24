@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tenant_navigation"
+    app:startDestination="@+id/navigation_tenant_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_tenant_dashboard"
+        android:name="com.nijhoomt.ntrental.userroles.tenant.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_tenant_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_tenant_reports"
+        android:name="com.nijhoomt.ntrental.userroles.tenant.reports.ReportsFragment"
+        android:label="@string/title_reports"
+        tools:layout="@layout/fragment_tenant_reports" />
+
+    <fragment
+        android:id="@+id/navigation_tenant_todo"
+        android:name="com.nijhoomt.ntrental.userroles.tenant.todo.ToDoFragment"
+        android:label="@string/title_todo"
+        tools:layout="@layout/fragment_tenant_todo" />
+
+    <fragment
+        android:id="@+id/navigation_tenant_documents"
+        android:name="com.nijhoomt.ntrental.userroles.tenant.documents.DocumentsFragment"
+        android:label="@string/title_documents"
+        tools:layout="@layout/fragment_tenant_documents" />
+</navigation>

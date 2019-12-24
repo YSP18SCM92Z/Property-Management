@@ -22,7 +22,7 @@ class ReportsFragment : Fragment() {
         reportsViewModel =
             ViewModelProviders.of(this).get(ReportsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_landlord_reports, container, false)
-        val textView: TextView = root.findViewById(R.id.text_reports)
+        val textView: TextView = root.findViewById(R.id.text_landlord_reports)
         reportsViewModel.text.observe(this, Observer {
             textView.text = it
         })

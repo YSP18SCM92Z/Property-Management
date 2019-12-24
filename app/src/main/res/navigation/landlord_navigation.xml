@@ -2,29 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    android:id="@+id/landlord_navigation"
+    app:startDestination="@+id/navigation_landlord_dashboard">
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_landlord_dashboard"
         android:name="com.nijhoomt.ntrental.userroles.landlord.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_landlord_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_reports"
+        android:id="@+id/navigation_landlord_reports"
         android:name="com.nijhoomt.ntrental.userroles.landlord.reports.ReportsFragment"
         android:label="@string/title_reports"
         tools:layout="@layout/fragment_landlord_reports" />
 
     <fragment
-        android:id="@+id/navigation_todo"
+        android:id="@+id/navigation_landlord_todo"
         android:name="com.nijhoomt.ntrental.userroles.landlord.todo.ToDoFragment"
         android:label="@string/title_todo"
         tools:layout="@layout/fragment_landlord_todo" />
 
     <fragment
-        android:id="@+id/navigation_documents"
+        android:id="@+id/navigation_landlord_documents"
         android:name="com.nijhoomt.ntrental.userroles.landlord.documents.DocumentsFragment"
         android:label="@string/title_documents"
         tools:layout="@layout/fragment_landlord_documents" />

@@ -1,13 +1,13 @@
-package com.nijhoomt.ntrental.userroles.landlord.documents
+package com.nijhoomt.ntrental.userroles.tenant.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DocumentsViewModel : ViewModel() {
+class DashboardViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Documents Fragment for Landlord"
+        value = "This is Dashboard Fragment for Tenant"
     }
     val text: LiveData<String> = _text
 }

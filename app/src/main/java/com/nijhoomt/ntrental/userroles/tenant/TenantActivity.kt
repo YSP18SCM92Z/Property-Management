@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.userroles.landlord
+package com.nijhoomt.ntrental.userroles.tenant
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,24 +17,24 @@ import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.network.LoginObject
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
-class LandlordActivity : AppCompatActivity() {
+class TenantActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landlord)
-        val navView: BottomNavigationView = findViewById(R.id.landlord_bottom_nav)
+        setContentView(R.layout.activity_tenant)
+        val navView: BottomNavigationView = findViewById(R.id.tenant_bottom_nav)
 
         setUpToolbar()
 
-        val navController = findNavController(R.id.landlord_nav_host_fragment)
+        val navController = findNavController(R.id.tenant_nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_landlord_dashboard,
-                R.id.navigation_landlord_reports,
-                R.id.navigation_landlord_todo,
-                R.id.navigation_landlord_documents
+                R.id.navigation_tenant_dashboard,
+                R.id.navigation_tenant_reports,
+                R.id.navigation_tenant_todo,
+                R.id.navigation_tenant_documents
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

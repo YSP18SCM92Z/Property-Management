@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.userroles.landlord.dashboard
+package com.nijhoomt.ntrental.userroles.tenant.todo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 
-class DashboardFragment : Fragment() {
+class ToDoFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var toDoViewModel: ToDoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_landlord_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_landlord_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        toDoViewModel =
+            ViewModelProviders.of(this).get(ToDoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_tenant_todo, container, false)
+        val textView: TextView = root.findViewById(R.id.text_tenant_todo)
+        toDoViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

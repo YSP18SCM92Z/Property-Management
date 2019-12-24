@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class ReportsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Reports Fragment"
+        value = "This is Reports Fragment for Landlord"
     }
     val text: LiveData<String> = _text
 }

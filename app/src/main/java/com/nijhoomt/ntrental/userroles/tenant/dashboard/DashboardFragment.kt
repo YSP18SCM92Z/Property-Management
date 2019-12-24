@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.userroles.landlord.dashboard
+package com.nijhoomt.ntrental.userroles.tenant.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,8 +21,8 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_landlord_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_landlord_dashboard)
+        val root = inflater.inflate(R.layout.fragment_tenant_dashboard, container, false)
+        val textView: TextView = root.findViewById(R.id.text_tenant_dashboard)
         dashboardViewModel.text.observe(this, Observer {
             textView.text = it
         })

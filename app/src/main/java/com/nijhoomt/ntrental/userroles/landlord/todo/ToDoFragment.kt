@@ -22,7 +22,7 @@ class ToDoFragment : Fragment() {
         toDoViewModel =
             ViewModelProviders.of(this).get(ToDoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_landlord_todo, container, false)
-        val textView: TextView = root.findViewById(R.id.text_todo)
+        val textView: TextView = root.findViewById(R.id.text_landlord_todo)
         toDoViewModel.text.observe(this, Observer {
             textView.text = it
         })

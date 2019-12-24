@@ -5,9 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
+import com.nijhoomt.ntrental.userroles.tenant.TenantActivity
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.LoginCredential
+import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -67,7 +68,11 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 "Property M" -> {}
-                "tenant" -> {}
+                "Tenant" -> {
+                    val intent = Intent(this, TenantActivity::class.java)
+                    intent.putExtra("LoginObject", it)
+                    startActivity(intent)
+                }
                 "Vendor" ->{}
             }
 
