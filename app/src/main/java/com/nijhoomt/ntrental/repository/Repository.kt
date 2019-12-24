@@ -1,7 +1,9 @@
 package com.nijhoomt.ntrental.repository
 
 import android.app.Application
+import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.model.RegisterCredential
+import com.nijhoomt.ntrental.network.LoginObject
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
 import retrofit2.Call
 
@@ -36,6 +38,15 @@ class Repository(application: Application) {
                 landlord_email = registerCredential.landlored_email,
                 password = registerCredential.password,
                 account_for = registerCredential.account_for
+            )
+    }
+
+    fun signUserIn(loginCredential: LoginCredential): Call<LoginObject> {
+        return PropertyManagementAPI
+            .retrofitLoginService
+            .postUserAsync(
+                password = loginCredential.password,
+                email = loginCredential.email
             )
     }
 

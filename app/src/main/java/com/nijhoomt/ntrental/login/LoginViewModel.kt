@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.network.LoginObject
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
+import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,9 +18,11 @@ import retrofit2.Response
  * Under instructions of Varun, Manisha, Ansari, & Rahul
  */
 class LoginViewModel(
-    private val loginCredential: LoginCredential,
-    private val application: Application
+    loginCredential: LoginCredential,
+    application: Application
 ) : ViewModel() {
+
+    private val repository = Repository(application)
 
     private var _loginObject = MutableLiveData<LoginObject>()
 
@@ -27,15 +30,17 @@ class LoginViewModel(
         get() = _loginObject
 
     init {
-        initiateLogin()
+        initiateLogin(loginCredential)
     }
 
-    private fun initiateLogin() {
-        val call = PropertyManagementAPI
-            .retrofitLoginService
-            .postUserAsync(
-                password = loginCredential.password,
-                email = loginCredential.email)
+    private fun initiateLogin(loginCredential: LoginCredential) {
+//        val call = PropertyManagementAPI
+//            .retrofitLoginService
+//            .postUserAsync(
+//                password = loginCredential.password,
+//                email = loginCredential.email)
+//
+        val call = repository.signUserIn(loginCredential)
 
         call.enqueue(object : Callback<LoginObject>{
             override fun onFailure(call: Call<LoginObject>, t: Throwable) {
