@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.nijhoomt.ntrental.MainActivity
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.login_register.LoginRegisterActivity
 

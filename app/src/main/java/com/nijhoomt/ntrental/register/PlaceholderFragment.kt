@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.login.LoginActivity
 import com.nijhoomt.ntrental.model.RegisterCredential
-import kotlinx.android.synthetic.main.fragment_register.*
-import kotlinx.android.synthetic.main.fragment_register.view.*
+import kotlinx.android.synthetic.main.fragment_common_register.*
+import kotlinx.android.synthetic.main.fragment_common_register.view.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -24,7 +24,7 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        val view = inflater.inflate(R.layout.fragment_common_register, container, false)
 
         if (arguments?.getInt(ARG_SECTION_NUMBER) == 3) {
             view.tiet_register_landlord_property_manager_email.visibility = View.VISIBLE

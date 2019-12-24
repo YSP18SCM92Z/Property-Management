@@ -1,13 +1,13 @@
-package com.nijhoomt.ntrental.todo
+package com.nijhoomt.ntrental.userroles.landlord.reports
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ToDoViewModel : ViewModel() {
+class ReportsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is To-Do List Fragment"
+        value = "This is Reports Fragment"
     }
     val text: LiveData<String> = _text
 }

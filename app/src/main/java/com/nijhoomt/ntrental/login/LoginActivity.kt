@@ -2,16 +2,13 @@ package com.nijhoomt.ntrental.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nijhoomt.ntrental.MainActivity
+import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.LoginCredential
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
@@ -63,7 +60,13 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginObject.observe(this, Observer {
 
-            val intent = Intent(this, MainActivity::class.java)
+            when (loginViewModel.loginObject.value?.userType) {
+                "Landlord" -> {}
+                "Property M" -> {}
+                "tenant" -> {}
+                "Vendor" ->{}
+            }
+            val intent = Intent(this, LandlordActivity::class.java)
             intent.putExtra("LoginObject", it)
             startActivity(intent)
         })

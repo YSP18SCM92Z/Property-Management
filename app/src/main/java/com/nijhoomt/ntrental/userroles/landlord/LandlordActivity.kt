@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental
+package com.nijhoomt.ntrental.userroles.landlord
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,16 +12,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.network.LoginObject
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
-class MainActivity : AppCompatActivity() {
+class LandlordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        setContentView(R.layout.activity_landlord)
+        val navView: BottomNavigationView = findViewById(R.id.landlord_bottom_nav)
 
         setUpToolbar()
 

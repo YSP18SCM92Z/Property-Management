@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.documents
+package com.nijhoomt.ntrental.userroles.landlord.documents
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class DocumentsFragment : Fragment() {
     ): View? {
         documentsViewModel =
             ViewModelProviders.of(this).get(DocumentsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_documents, container, false)
+        val root = inflater.inflate(R.layout.fragment_landlord_documents, container, false)
         val textView: TextView = root.findViewById(R.id.text_documents)
         documentsViewModel.text.observe(this, Observer {
             textView.text = it

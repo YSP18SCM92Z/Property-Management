@@ -1,13 +1,13 @@
-package com.nijhoomt.ntrental.reports
+package com.nijhoomt.ntrental.userroles.landlord.documents
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ReportsViewModel : ViewModel() {
+class DocumentsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Reports Fragment"
+        value = "This is Documents Fragment"
     }
     val text: LiveData<String> = _text
 }

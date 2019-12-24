@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.dashboard
+package com.nijhoomt.ntrental.userroles.landlord.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

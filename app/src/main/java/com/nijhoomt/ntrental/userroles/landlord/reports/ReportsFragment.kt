@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.reports
+package com.nijhoomt.ntrental.userroles.landlord.reports
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class ReportsFragment : Fragment() {
     ): View? {
         reportsViewModel =
             ViewModelProviders.of(this).get(ReportsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_reports, container, false)
+        val root = inflater.inflate(R.layout.fragment_landlord_reports, container, false)
         val textView: TextView = root.findViewById(R.id.text_reports)
         reportsViewModel.text.observe(this, Observer {
             textView.text = it

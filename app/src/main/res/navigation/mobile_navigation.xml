@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.nijhoomt.ntrental.dashboard.DashboardFragment"
+        android:name="com.nijhoomt.ntrental.userroles.landlord.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_landlord_dashboard" />
 
     <fragment
         android:id="@+id/navigation_reports"
-        android:name="com.nijhoomt.ntrental.reports.ReportsFragment"
+        android:name="com.nijhoomt.ntrental.userroles.landlord.reports.ReportsFragment"
         android:label="@string/title_reports"
-        tools:layout="@layout/fragment_reports" />
+        tools:layout="@layout/fragment_landlord_reports" />
 
     <fragment
         android:id="@+id/navigation_todo"
-        android:name="com.nijhoomt.ntrental.todo.ToDoFragment"
+        android:name="com.nijhoomt.ntrental.userroles.landlord.todo.ToDoFragment"
         android:label="@string/title_todo"
-        tools:layout="@layout/fragment_todo" />
+        tools:layout="@layout/fragment_landlord_todo" />
 
     <fragment
         android:id="@+id/navigation_documents"
-        android:name="com.nijhoomt.ntrental.documents.DocumentsFragment"
+        android:name="com.nijhoomt.ntrental.userroles.landlord.documents.DocumentsFragment"
         android:label="@string/title_documents"
-        tools:layout="@layout/fragment_documents" />
+        tools:layout="@layout/fragment_landlord_documents" />
 </navigation>
