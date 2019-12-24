@@ -5,4 +5,7 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="dashboard_mcardview_width">105dp</dimen>
+    <dimen name="dashboard_mcardview_height">50dp</dimen>
+    <dimen name="dashboard_mcardview_elevation">10dp</dimen>
 </resources>

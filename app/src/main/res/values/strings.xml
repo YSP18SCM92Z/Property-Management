@@ -23,4 +23,10 @@
     <string name="createaccount">Create an account</string>
     <string name="forgotyourpassword">Forgot your password?</string>
 
+    <string name="dashboard_vendor">Vendor</string>
+    <string name="dashboard_tenant">Tenant</string>
+    <string name="dashboard_rent">Rent</string>
+    <string name="dashboard_transaction">Transaction</string>
+    <string name="dashboard_property">Property</string>
+
 </resources>
