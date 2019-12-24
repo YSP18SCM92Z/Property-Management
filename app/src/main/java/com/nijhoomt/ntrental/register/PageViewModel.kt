@@ -1,17 +1,20 @@
 package com.nijhoomt.ntrental.register
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.RegisterCredential
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
+import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class PageViewModel(
-    private val registerCredential: RegisterCredential
+    registerCredential: RegisterCredential,
+    application: Application
 ) : ViewModel() {
 
 //    private val _index = MutableLiveData<Int>()
@@ -20,6 +23,7 @@ class PageViewModel(
 //    }
 
     private var _responseMessage = MutableLiveData<String>()
+    private var repository = Repository(application)
 
     val responseMessage: LiveData<String>
         get() = _responseMessage
@@ -42,16 +46,18 @@ class PageViewModel(
     }
 
     init {
-        initiateRegister()
+        initiateRegister(registerCredential)
     }
 
-    private fun initiateRegister() {
+    private fun initiateRegister(registerCredential: RegisterCredential) {
+//
+//        val call = PropertyManagementAPI.retrofitRegisterService
+//            .postNewUserAsync(email = registerCredential.email,
+//                landlord_email = registerCredential.landlored_email,
+//                password = registerCredential.password,
+//                account_for = registerCredential.account_for)
 
-        val call = PropertyManagementAPI.retrofitRegisterService
-            .postNewUserAsync(email = registerCredential.email,
-                landlord_email = registerCredential.landlored_email,
-                password = registerCredential.password,
-                account_for = registerCredential.account_for)
+        val call = repository.createNewUser(registerCredential)
 
         call.enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {

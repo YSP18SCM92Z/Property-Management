@@ -1,5 +1,6 @@
 package com.nijhoomt.ntrental.register
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,17 +34,17 @@ class PlaceholderFragment : Fragment() {
         // You need the tabTitle or the index to programmatically hide/show
         view.btn_register_register.setOnClickListener {
             if (arguments?.getInt(ARG_SECTION_NUMBER) == 3) {
-                validateTenantUserInputs(view)
+                validateTenantUserInputs(view, this.activity?.application!!)
             }
             // Any other tabs
             else {
-                validateOtherTabUserInputs(view)
+                validateOtherTabUserInputs(view, this.activity?.application!!)
             }
         }
         return view
     }
 
-    private fun validateOtherTabUserInputs(view: View) {
+    private fun validateOtherTabUserInputs(view: View, application: Application) {
         if (view.tiet_register_user_email.text.toString() == "" ||
             view.tiet_register_password.text.toString() == "" ||
             view.tiet_register_confirm_password.text.toString() == ""
@@ -74,11 +75,11 @@ class PlaceholderFragment : Fragment() {
             view.tiet_register_confirm_password.error =
                 "Password does not match!"
         } else {
-            processOtherTabs(view)
+            processOtherTabs(view, application)
         }
     }
 
-    private fun validateTenantUserInputs(view: View) {
+    private fun validateTenantUserInputs(view: View, application: Application) {
         if (view.tiet_register_landlord_property_manager_email.text.toString() == "" ||
             view.tiet_register_user_email.text.toString() == "" ||
             view.tiet_register_password.text.toString() == "" ||
@@ -114,11 +115,11 @@ class PlaceholderFragment : Fragment() {
             view.tiet_register_confirm_password.error =
                 "Password does not match!"
         } else {
-            processTenantTab(view)
+            processTenantTab(view, application)
         }
     }
 
-    private fun processOtherTabs(view: View) {
+    private fun processOtherTabs(view: View, application: Application) {
         val email = tiet_register_user_email.text.toString()
         val password = tiet_register_password.text.toString()
         val account_for = arguments?.getString(ARG_SECTION_TITLE).toString()
@@ -128,7 +129,8 @@ class PlaceholderFragment : Fragment() {
         )
 
         val pageViewModelFactory = PageViewModelFactory(
-            registerCredential = registerCredential
+            registerCredential = registerCredential,
+            application = application
         )
 
         val pageViewModel =
@@ -152,7 +154,7 @@ class PlaceholderFragment : Fragment() {
         })
     }
 
-    private fun processTenantTab(view: View) {
+    private fun processTenantTab(view: View, application: Application) {
         val email = tiet_register_user_email.text.toString()
         val landlord_email = tiet_register_landlord_property_manager_email.text.toString()
         val password = tiet_register_password.text.toString()
@@ -163,7 +165,8 @@ class PlaceholderFragment : Fragment() {
         )
 
         val pageViewModelFactory = PageViewModelFactory(
-            registerCredential = registerCredential
+            registerCredential = registerCredential,
+            application = application
         )
 
         val pageViewModel =
