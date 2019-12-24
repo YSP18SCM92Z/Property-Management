@@ -61,14 +61,16 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginObject.observe(this, Observer {
 
             when (loginViewModel.loginObject.value?.userType) {
-                "Landlord" -> {}
+                "Landlord" -> {
+                    val intent = Intent(this, LandlordActivity::class.java)
+                    intent.putExtra("LoginObject", it)
+                    startActivity(intent)
+                }
                 "Property M" -> {}
                 "tenant" -> {}
                 "Vendor" ->{}
             }
-            val intent = Intent(this, LandlordActivity::class.java)
-            intent.putExtra("LoginObject", it)
-            startActivity(intent)
+
         })
     }
 }
