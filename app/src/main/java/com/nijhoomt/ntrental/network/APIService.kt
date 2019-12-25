@@ -35,6 +35,11 @@ private val retrofitRxJavaRegister = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+private val retrofitPropertyList = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
 object PropertyManagementAPI {
     val retrofitLoginService: APIInterface by lazy {
         retrofitLogin.create(APIInterface::class.java)
@@ -44,5 +49,9 @@ object PropertyManagementAPI {
     }
     val retrofitRxJavaRegisterService: APIInterface by lazy {
         retrofitRxJavaRegister.create(APIInterface::class.java)
+    }
+
+    val retrofitPropertyService: APIInterface by lazy {
+        retrofitPropertyList.create(APIInterface::class.java)
     }
 }

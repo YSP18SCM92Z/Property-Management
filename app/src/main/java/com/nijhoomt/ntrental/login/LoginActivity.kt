@@ -1,6 +1,8 @@
 package com.nijhoomt.ntrental.login
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -8,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.userroles.tenant.TenantActivity
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.LoginCredential
+import com.nijhoomt.ntrental.properties.PropertiesActivity
 import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -61,11 +64,19 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginObject.observe(this, Observer {
 
-            when (loginViewModel.loginObject.value?.userType) {
+            when (it.userType) {
                 "Landlord" -> {
                     val intent = Intent(this, LandlordActivity::class.java)
                     intent.putExtra("LoginObject", it)
                     startActivity(intent)
+
+                    val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+                    var editor = myPref.edit()
+                    editor.putString("userId", it.userId)
+                    editor.putString("userType", it.userType)
+
+                    editor.apply()
+
                 }
                 "Property M" -> {}
                 "Tenant" -> {

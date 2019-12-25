@@ -12,10 +12,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.network.LoginObject
+import com.nijhoomt.ntrental.properties.PropertiesActivity
 import kotlinx.android.synthetic.main.custom_toolbar.*
+import kotlinx.android.synthetic.main.fragment_landlord_dashboard.*
 
 class LandlordActivity : AppCompatActivity() {
 
@@ -40,10 +44,19 @@ class LandlordActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val loginCredential = intent.getSerializableExtra("LoginObject") as LoginObject
-        Toast.makeText(this, """
-            ${loginCredential.userEmail}
-        """.trimIndent(), Toast.LENGTH_LONG).show()
+//        val loginCredential = intent.getSerializableExtra("LoginObject") as LoginObject
+//        Toast.makeText(this, """
+//            ${loginCredential.userEmail}
+//        """.trimIndent(), Toast.LENGTH_LONG).show()
+
+//        val mcv_dashboard = findViewById(R.id.mcv_dashboard_property) as MaterialCardView
+
+//        mcv_dashboard.setOnClickListener{
+//
+//            val intent_property = Intent(this, PropertiesActivity::class.java)
+//            intent_property.putExtra("LoginObject", loginCredential)
+//            startActivity(intent_property)
+//        }
 
     }
 
