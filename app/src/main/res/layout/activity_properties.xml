@@ -12,4 +12,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_properties"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="?attr/actionBarSize"
+        tools:itemCount="5"
+        tools:listitem="@layout/row_property"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.network.LoginObject
+import com.nijhoomt.ntrental.properties.detail.PropertyDetailActivity
+import kotlinx.android.synthetic.main.activity_properties.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class PropertiesActivity : AppCompatActivity() {
@@ -42,10 +45,18 @@ class PropertiesActivity : AppCompatActivity() {
                 .of(this, propertyViewModelFactory)
                 .get(PropertyViewModel::class.java)
 
+        val propertiesListAdapter = PropertiesListAdapter(application)
+        recyclerview_properties.adapter = propertiesListAdapter
+
         propertyViewModel.property.observe(this, Observer {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
+            propertiesListAdapter.submitList(it)
         })
 
+        propertiesListAdapter.setOnItemClickListener(object: PropertiesListAdapter.OnItemClickListener{
+            override fun onItemClick(property: Property) {
+                startActivity(Intent(applicationContext, PropertyDetailActivity::class.java))
+            }
+        })
 
         // Just like to-do app, allow landlord to CRUD on the property right here
 
@@ -53,7 +64,7 @@ class PropertiesActivity : AppCompatActivity() {
 
     private fun setUpToolbar() {
         val customToolbar = custom_toolbar as Toolbar
-        customToolbar.title = "Property"
+        customToolbar.title = "Your Properties"
         setSupportActionBar(customToolbar)
     }
 
