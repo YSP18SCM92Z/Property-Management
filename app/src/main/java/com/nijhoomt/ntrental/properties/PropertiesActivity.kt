@@ -6,17 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.model.Property
+import com.nijhoomt.ntrental.model.UserId
 import com.nijhoomt.ntrental.more.MoreActivity
-import com.nijhoomt.ntrental.network.LoginObject
+import com.nijhoomt.ntrental.properties.detail.AddPropertyActivity
 import com.nijhoomt.ntrental.properties.detail.PropertyDetailActivity
 import kotlinx.android.synthetic.main.activity_properties.*
-import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class PropertiesActivity : AppCompatActivity() {
 
@@ -59,6 +58,10 @@ class PropertiesActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+
+        fab_properties.setOnClickListener {
+            startActivity(Intent(this, AddPropertyActivity::class.java))
+        }
 
         // Just like to-do app, allow landlord to CRUD on the property right here
 

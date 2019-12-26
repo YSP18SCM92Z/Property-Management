@@ -5,9 +5,8 @@ import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.model.RegisterCredential
 import com.nijhoomt.ntrental.network.LoginObject
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
-import com.nijhoomt.ntrental.properties.UserId
-import com.nijhoomt.ntrental.properties.Property
-import com.nijhoomt.ntrental.properties.PropertyObject
+import com.nijhoomt.ntrental.model.UserId
+import com.nijhoomt.ntrental.model.PropertyObject
 import retrofit2.Call
 
 /**
@@ -65,7 +64,7 @@ class Repository(application: Application) {
 //        return GroceryApi.retrofitService.getSpecifiedSubCategoriesBasedOnCategoryIdAsync(catId)
 //    }
 
-    fun getPropertyList(userId:UserId): Call<PropertyObject>{
+    fun getPropertyList(userId: UserId): Call<PropertyObject>{
         return PropertyManagementAPI
             .retrofitPropertyService
             .getPropertyListAsync(

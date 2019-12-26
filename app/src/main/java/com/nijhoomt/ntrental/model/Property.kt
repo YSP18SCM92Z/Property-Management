@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.properties
+package com.nijhoomt.ntrental.model
 
 import java.io.Serializable
 

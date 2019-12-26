@@ -1,3 +1,3 @@
-package com.nijhoomt.ntrental.properties
+package com.nijhoomt.ntrental.model
 
 data class PropertyObject(val Property: List<Property>)

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.nijhoomt.ntrental.R
-import com.nijhoomt.ntrental.properties.Property
+import com.nijhoomt.ntrental.model.Property
 import kotlinx.android.synthetic.main.activity_property_detail.*
 
 class PropertyDetailActivity : AppCompatActivity() {

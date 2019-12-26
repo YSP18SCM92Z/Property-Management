@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.model.Property
 import kotlinx.android.synthetic.main.row_property.view.*
 
 /**
