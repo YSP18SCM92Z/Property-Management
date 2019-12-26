@@ -65,7 +65,7 @@ class PropertiesActivity : AppCompatActivity() {
     }
 
     private fun setUpToolbar() {
-        val customToolbar = custom_toolbar as Toolbar
+        val customToolbar = properties_custom_toolbar as Toolbar
         customToolbar.title = "Your Properties"
         setSupportActionBar(customToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

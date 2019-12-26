@@ -56,8 +56,8 @@ class PropertiesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val curNote = getItem(position)
-        holder.bindDataToView(curNote, position)
+        val curProperty = getItem(position)
+        holder.bindDataToView(curProperty, position)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,7 +71,11 @@ class PropertiesListAdapter(
 
                 tv_property_id.text = curProperty.id
                 tv_property_address.text = "${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
-                tv_property_purchaseprice.text = "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
+
+                if (curProperty.propertypurchaseprice.isNotEmpty()) {
+                    tv_property_purchaseprice.text =
+                        "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
+                }
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {

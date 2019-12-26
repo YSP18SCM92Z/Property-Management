@@ -8,5 +8,6 @@
     android:background="@color/colorPrimary"
     android:minHeight="?attr/actionBarSize"
     android:orientation="vertical"
+    app:layout_collapseMode="pin"
     app:titleTextColor="@color/white" />
 
