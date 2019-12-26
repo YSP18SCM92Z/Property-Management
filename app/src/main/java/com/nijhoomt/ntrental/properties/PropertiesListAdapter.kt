@@ -47,7 +47,7 @@ class PropertiesListAdapter(
 
     private lateinit var listener: OnItemClickListener
 
-    fun getCartAt(position: Int): Property = getItem(position)
+    fun getPropertyAt(position: Int): Property = getItem(position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -71,14 +71,13 @@ class PropertiesListAdapter(
 
                 tv_property_id.text = curProperty.id
                 tv_property_address.text = "${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
-                tv_property_purchaseprice.text = curProperty.propertypurchaseprice
+                tv_property_purchaseprice.text = "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(curProperty)
                     }
                 }
-
             }
         }
     }

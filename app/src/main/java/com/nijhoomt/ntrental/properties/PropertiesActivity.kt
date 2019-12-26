@@ -54,7 +54,9 @@ class PropertiesActivity : AppCompatActivity() {
 
         propertiesListAdapter.setOnItemClickListener(object: PropertiesListAdapter.OnItemClickListener{
             override fun onItemClick(property: Property) {
-                startActivity(Intent(applicationContext, PropertyDetailActivity::class.java))
+                val intent = Intent(applicationContext, PropertyDetailActivity::class.java)
+                intent.putExtra("SELECTED_PROPERTY", property)
+                startActivity(intent)
             }
         })
 
@@ -66,6 +68,7 @@ class PropertiesActivity : AppCompatActivity() {
         val customToolbar = custom_toolbar as Toolbar
         customToolbar.title = "Your Properties"
         setSupportActionBar(customToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,6 +78,10 @@ class PropertiesActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
             R.id.btn_more -> {
                 startActivity(Intent(this, MoreActivity::class.java))
                 true
