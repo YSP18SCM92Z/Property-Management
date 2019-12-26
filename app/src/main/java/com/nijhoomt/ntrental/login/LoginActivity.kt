@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.userroles.tenant.TenantActivity
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordActivity
 import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.properties.PropertiesActivity
 import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
@@ -41,6 +42,15 @@ class LoginActivity : AppCompatActivity() {
                 processLogin()
             }
         }
+        
+        text_view_forgot_your_password.setOnClickListener{
+
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+
+            startActivity(intent)
+        }
+
+
 
 
     }

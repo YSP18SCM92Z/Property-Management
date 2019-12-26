@@ -12,6 +12,6 @@ ViewModelProvider.Factory{
             return PropertyViewModel(userId, application) as T
         }
 
-        throw IllegalArgumentException("Unknown viewmodel class")
+        throw IllegalArgumentException("Unknown viewmodel class") as Throwable
     }
 }

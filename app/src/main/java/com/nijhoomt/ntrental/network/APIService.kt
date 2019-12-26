@@ -5,6 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
 
 
 private const val BASE_URL = "http://rjtmobile.com/aamir/property-mgmt/"
@@ -40,6 +41,11 @@ private val retrofitPropertyList = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+private val retrofitForgottenPassword = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
 object PropertyManagementAPI {
     val retrofitLoginService: APIInterface by lazy {
         retrofitLogin.create(APIInterface::class.java)
@@ -53,5 +59,9 @@ object PropertyManagementAPI {
 
     val retrofitPropertyService: APIInterface by lazy {
         retrofitPropertyList.create(APIInterface::class.java)
+    }
+
+    val retrofitForgotPasswordService: APIInterface by lazy {
+        retrofitForgottenPassword.create(APIInterface::class.java)
     }
 }
