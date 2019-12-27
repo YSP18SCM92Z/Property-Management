@@ -55,7 +55,7 @@ class Repository(application: Application) {
 
     fun getPropertyList(userId: UserId): Call<PropertyObject>{
         return PropertyManagementAPI
-            .retrofitPropertyService
+            .retrofitService
             .getPropertyListAsync(
                 userid = userId.userid,
                 usertype = userId.usertype
@@ -64,7 +64,7 @@ class Repository(application: Application) {
 
     fun getForgottenPassword(forgotPasswordCred: ForgotPasswordCred): Call<ForgotPasswordObject> {
        return PropertyManagementAPI
-           .retrofitForgotPasswordService
+           .retrofitService
            .getForgottenPasswordAsync(
                email = forgotPasswordCred.useremail
            )
@@ -81,7 +81,7 @@ class Repository(application: Application) {
 
     fun addProperty(property: Property): Call<Message> {
         return PropertyManagementAPI
-            .retrofitAddPropertyService
+            .retrofitService
             .addPropertyAsync(
                 address = property.propertyaddress,
                 city = property.propertycity,
