@@ -1,8 +1,11 @@
 package com.nijhoomt.ntrental.network
 
+
+import com.nijhoomt.ntrental.model.PropertyObject
+
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordObject
 import com.nijhoomt.ntrental.properties.Property
-import com.nijhoomt.ntrental.properties.PropertyObject
+
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

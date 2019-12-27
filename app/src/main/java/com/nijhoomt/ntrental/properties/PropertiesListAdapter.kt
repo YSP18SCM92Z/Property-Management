@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.model.Property
 import kotlinx.android.synthetic.main.row_property.view.*
 
 /**
@@ -47,7 +48,7 @@ class PropertiesListAdapter(
 
     private lateinit var listener: OnItemClickListener
 
-    fun getCartAt(position: Int): Property = getItem(position)
+    fun getPropertyAt(position: Int): Property = getItem(position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -56,8 +57,8 @@ class PropertiesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val curNote = getItem(position)
-        holder.bindDataToView(curNote, position)
+        val curProperty = getItem(position)
+        holder.bindDataToView(curProperty, position)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,14 +72,17 @@ class PropertiesListAdapter(
 
                 tv_property_id.text = curProperty.id
                 tv_property_address.text = "${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
-                tv_property_purchaseprice.text = curProperty.propertypurchaseprice
+
+                if (curProperty.propertypurchaseprice.isNotEmpty()) {
+                    tv_property_purchaseprice.text =
+                        "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
+                }
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(curProperty)
                     }
                 }
-
             }
         }
     }

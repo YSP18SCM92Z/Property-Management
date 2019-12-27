@@ -49,15 +49,6 @@ class LandlordActivity : AppCompatActivity() {
 //            ${loginCredential.userEmail}
 //        """.trimIndent(), Toast.LENGTH_LONG).show()
 
-//        val mcv_dashboard = findViewById(R.id.mcv_dashboard_property) as MaterialCardView
-
-//        mcv_dashboard.setOnClickListener{
-//
-//            val intent_property = Intent(this, PropertiesActivity::class.java)
-//            intent_property.putExtra("LoginObject", loginCredential)
-//            startActivity(intent_property)
-//        }
-
     }
 
     private fun setUpToolbar() {
