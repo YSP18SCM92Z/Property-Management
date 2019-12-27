@@ -1,6 +1,8 @@
 package com.nijhoomt.ntrental.repository
 
 import android.app.Application
+import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordCred
+import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordObject
 import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.model.RegisterCredential
 import com.nijhoomt.ntrental.network.LoginObject
@@ -71,5 +73,13 @@ class Repository(application: Application) {
                 userid = userId.userid,
                 usertype = userId.usertype
             )
+    }
+
+    fun getForgottenPassword(forgotPasswordCred: ForgotPasswordCred): Call<ForgotPasswordObject> {
+       return PropertyManagementAPI
+           .retrofitForgotPasswordService
+           .getForgottenPasswordAync(
+               email = forgotPasswordCred.useremail
+           )
     }
 }
