@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".properties.detail.PropertyDetailActivity"></activity>
+        <activity android:name=".forgotpassword.ForgotPasswordActivity"></activity>
+        <activity android:name=".properties.detail.PropertyDetailActivity" />
         <activity android:name=".properties.PropertiesActivity">
 
             <!-- <intent-filter> -->

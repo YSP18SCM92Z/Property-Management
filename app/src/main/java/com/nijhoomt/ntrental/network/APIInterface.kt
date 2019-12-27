@@ -1,5 +1,6 @@
 package com.nijhoomt.ntrental.network
 
+import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordObject
 import com.nijhoomt.ntrental.properties.Property
 import com.nijhoomt.ntrental.properties.PropertyObject
 import retrofit2.Call
@@ -9,6 +10,8 @@ import retrofit2.http.Query
 private const val FILE_NAME_LOGIN = "pro_mgt_login.php"
 private const val FILE_NAME_REGISTER = "pro_mgt_reg.php"
 private const val FILE_NAME_PROPERTY_LIST = "property.php"
+private const val FILE_NAME_FORGOT_YOUR_PASSWORD = "pro_mgt_forgot_pass.php"
+                                                    //pro_mgt_forgot_pass.php
 
 interface APIInterface {
 
@@ -41,6 +44,11 @@ interface APIInterface {
         @Query("usertype") usertype: String
 
         ) : Call<PropertyObject>
+
+    @GET("$FILE_NAME_FORGOT_YOUR_PASSWORD")
+    fun getForgottenPasswordAync(
+        @Query("email") email: String
+    ) : Call<ForgotPasswordObject>
 }
 
 
