@@ -28,5 +28,6 @@
     <string name="dashboard_rent">Rent</string>
     <string name="dashboard_transaction">Transaction</string>
     <string name="dashboard_property">Property</string>
+    <string name="title_activity_property_maps">Map</string>
 
 </resources>

@@ -3,19 +3,18 @@ package com.nijhoomt.ntrental.repository
 import android.app.Application
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordCred
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordObject
-import com.nijhoomt.ntrental.model.LoginCredential
-import com.nijhoomt.ntrental.model.RegisterCredential
-import com.nijhoomt.ntrental.network.LoginObject
+import com.nijhoomt.ntrental.model.*
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
-import com.nijhoomt.ntrental.model.UserId
-import com.nijhoomt.ntrental.model.PropertyObject
 import retrofit2.Call
 
 /**
  * Created by N & T on 12/23/2019.
  * Under instructions of Varun, Manisha, Ansari, & Rahul
  */
+private const val GEOCODING_API_KEY = "AIzaSyD8MNG7RMklDq15lfOYzAI4iz4bKb-_TS4"
+
 class Repository(application: Application) {
+
 
     // Local/Database Data Sources
 
@@ -54,18 +53,6 @@ class Repository(application: Application) {
             )
     }
 
-//    fun getSpecifiedProductsBasedOnSubCategoryId(subcatId: Int): Deferred<ProductObject> {
-//        return GroceryApi.retrofitService.getSpecifiedProductsBasedOnSubCategoryIdAsync(subcatId)
-//    }
-//
-//    fun getCategories() : Deferred<GroceryCategoryObject>{
-//        return GroceryApi.retrofitService.getCategoriesAsync()
-//    }
-//
-//    fun getSpecifiedSubCategoriesBasedOnCategoryId(catId: Int) : Deferred<GrocerySubCategoryObject> {
-//        return GroceryApi.retrofitService.getSpecifiedSubCategoriesBasedOnCategoryIdAsync(catId)
-//    }
-
     fun getPropertyList(userId: UserId): Call<PropertyObject>{
         return PropertyManagementAPI
             .retrofitPropertyService
@@ -78,8 +65,17 @@ class Repository(application: Application) {
     fun getForgottenPassword(forgotPasswordCred: ForgotPasswordCred): Call<ForgotPasswordObject> {
        return PropertyManagementAPI
            .retrofitForgotPasswordService
-           .getForgottenPasswordAync(
+           .getForgottenPasswordAsync(
                email = forgotPasswordCred.useremail
            )
+    }
+
+    fun getLatLngObject(formattedAddress: String): Call<GeocodingObject> {
+        return PropertyManagementAPI
+            .retrofitGeocodingService
+            .getLatLngObjectAsync(
+                address = formattedAddress,
+                key = GEOCODING_API_KEY
+            )
     }
 }

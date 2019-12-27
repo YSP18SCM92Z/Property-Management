@@ -10,6 +10,9 @@ import retrofit2.create
 
 private const val BASE_URL = "http://rjtmobile.com/aamir/property-mgmt/"
 
+private const val GEOCODING_BASE_URL = "https://maps.googleapis.com/maps/api/geocode/"
+
+
 private val gson = GsonBuilder()
     .setLenient()
     .create()
@@ -46,10 +49,17 @@ private val retrofitForgottenPassword = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+private val retrofitGeocoding = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(GEOCODING_BASE_URL)
+    .build()
+
 object PropertyManagementAPI {
+
     val retrofitLoginService: APIInterface by lazy {
         retrofitLogin.create(APIInterface::class.java)
     }
+
     val retrofitRegisterService: APIInterface by lazy {
         retrofitRegister.create(APIInterface::class.java)
     }
@@ -63,5 +73,10 @@ object PropertyManagementAPI {
 
     val retrofitForgotPasswordService: APIInterface by lazy {
         retrofitForgottenPassword.create(APIInterface::class.java)
+    }
+
+    // Geocoding
+    val retrofitGeocodingService: APIInterface by lazy {
+        retrofitGeocoding.create(APIInterface::class.java)
     }
 }

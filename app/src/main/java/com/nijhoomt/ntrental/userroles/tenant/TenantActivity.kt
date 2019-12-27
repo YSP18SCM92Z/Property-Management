@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.more.MoreActivity
-import com.nijhoomt.ntrental.network.LoginObject
+import com.nijhoomt.ntrental.model.LoginObject
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class TenantActivity : AppCompatActivity() {
