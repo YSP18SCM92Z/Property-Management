@@ -12,13 +12,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.LatLngObject
+import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.more.MoreActivity
+import com.nijhoomt.ntrental.properties.PropertiesActivity
 import kotlinx.android.synthetic.main.activity_add_property.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class AddPropertyActivity : AppCompatActivity() {
 
     private lateinit var lagLngObject: LatLngObject
+    private lateinit var addPropertyViewModel: AddPropertyViewModel
+    private lateinit var property: Property
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,7 @@ class AddPropertyActivity : AppCompatActivity() {
 
         setUpToolbar()
 
-        btn_add_property_save.setOnClickListener {
+        btn_add_property_check.setOnClickListener {
 
 //        "id": "942"
 //        val id: String,
@@ -39,12 +43,19 @@ class AddPropertyActivity : AppCompatActivity() {
 //        "propertystatus": "tenants",
 //        "propertypurchaseprice": "12000",
 //        "propertymortageinfo": "no",
+            val address = tiet_add_property_address.text.toString()
+            val city = tiet_add_property_city.text.toString()
+            val state = tiet_add_property_state.text.toString()
+            val country = tiet_add_property_country.text.toString()
+            val purchasePrice = tiet_add_property_purchase_price.text.toString()
+
             val formattedString = constructFormattedAddress()
 
 
 //        User Credentials after Login
 //        "propertyuserid": "3",
 //        "propertyusertype": "landlord",
+
             val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
             var userId = myPref.getString("userId", "").toString()
             var userType = myPref.getString("userType", "").toString()
@@ -61,7 +72,7 @@ class AddPropertyActivity : AppCompatActivity() {
                 application = application
             )
 
-            val addPropertyViewModel = ViewModelProviders
+            addPropertyViewModel = ViewModelProviders
                 .of(this, addPropertyViewModelFactory)
                 .get(AddPropertyViewModel::class.java)
 
@@ -72,6 +83,34 @@ class AddPropertyActivity : AppCompatActivity() {
                     "Latitude: ${lagLngObject.lat}, Longitude: ${lagLngObject.lng}",
                     Toast.LENGTH_LONG
                 ).show()
+
+                property = Property(
+                    id = "",
+                    propertyaddress = address,
+                    propertycity = city,
+                    propertystate = state,
+                    propertycountry = country,
+                    propertypurchaseprice = purchasePrice,
+                    propertyuserid = userId,
+                    propertyusertype = userType,
+                    propertylatitude = lagLngObject.lat.toString(),
+                    propertylongitude = lagLngObject.lng.toString()
+                )
+            })
+        }
+
+        btn_add_property_save.setOnClickListener {
+            addPropertyViewModel.addProperty(property)
+            addPropertyViewModel.hasAddProperty.observe(this, Observer {
+                if (it == true) {
+                    startActivity(Intent(this, PropertiesActivity::class.java))
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Error: failed to add a property",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             })
         }
 

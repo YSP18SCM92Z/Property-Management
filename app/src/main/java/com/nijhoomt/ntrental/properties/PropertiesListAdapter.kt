@@ -77,6 +77,9 @@ class PropertiesListAdapter(
                     tv_property_purchaseprice.text =
                         "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
                 }
+                else {
+                    tv_property_purchaseprice.text = "N/A"
+                }
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {

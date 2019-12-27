@@ -20,6 +20,12 @@ class PropertyDetailActivity : AppCompatActivity() {
 
         tv_property_detail_id.text = "Id: ${chosenProperty.id}"
         tv_property_detail_address.text = "Address: \n${chosenProperty.propertyaddress}\n${chosenProperty.propertycity}, ${chosenProperty.propertystate} ${chosenProperty.propertycountry}"
-        tv_property_detail_price.text = "$%,.2f".format(chosenProperty.propertypurchaseprice.toDouble())
+
+        if (chosenProperty.propertypurchaseprice.isNotEmpty()) {
+            tv_property_detail_price.text = "$%,.2f".format(chosenProperty.propertypurchaseprice.toDouble())
+        }
+        else {
+            tv_property_detail_price.text = "N/A"
+        }
     }
 }

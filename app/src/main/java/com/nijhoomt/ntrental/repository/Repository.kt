@@ -78,4 +78,22 @@ class Repository(application: Application) {
                 key = GEOCODING_API_KEY
             )
     }
+
+    fun addProperty(property: Property): Call<Message> {
+        return PropertyManagementAPI
+            .retrofitAddPropertyService
+            .addPropertyAsync(
+                address = property.propertyaddress,
+                city = property.propertycity,
+                state = property.propertystate,
+                country = property.propertycountry,
+                pro_status = property.propertystatus,
+                purchase_price = property.propertypurchaseprice,
+                mortage_info = property.propertymortageinfo,
+                userid = property.propertyuserid,
+                usertype = property.propertyusertype,
+                latitude = property.propertylatitude,
+                longitude = property.propertylongitude
+            )
+    }
 }

@@ -26,8 +26,8 @@ class PropertyViewModel(
         get() = _propertyList
 
     init {
-//        getPropertyList(userId)
-        getPropertyList(UserId("3", "landlord"))
+        getPropertyList(userId)
+//        getPropertyList(UserId("3", "landlord"))
     }
 
     private fun getPropertyList(userId: UserId) {

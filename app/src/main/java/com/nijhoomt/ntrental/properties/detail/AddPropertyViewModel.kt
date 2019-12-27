@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nijhoomt.ntrental.model.GeocodingObject
 import com.nijhoomt.ntrental.model.LatLngObject
+import com.nijhoomt.ntrental.model.Message
+import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +33,10 @@ class AddPropertyViewModel (
     val wellFormattedAddress: LiveData<String>
         get() = _wellFormattedAddress
 
+    private var _hasAddProperty = MutableLiveData<Boolean>()
+    val hasAddProperty: LiveData<Boolean>
+        get() = _hasAddProperty
+
     init {
 //        getPropertyList(userId)
         getLatLngObject(formattedAddress)
@@ -51,11 +57,31 @@ class AddPropertyViewModel (
                 //
                 _latLngObject.value = LatLngObject(
                     response.body()?.results!![0].geometry.location.lat,
-                    response.body()?.results!![0].geometry.location.lng)
+                    response.body()?.results!![0].geometry.location.lng
+                )
 
                 _wellFormattedAddress.value = response.body()?.results!![0].formatted_address
             }
 
+        })
+    }
+
+    internal fun addProperty(property: Property) {
+
+        val call = repository.addProperty(property)
+
+        call.enqueue(object : Callback<Message> {
+            override fun onFailure(call: Call<Message>, t: Throwable) {
+                Log.e("Nijhoom", t.message)
+                _hasAddProperty.value = false
+            }
+
+            override fun onResponse(
+                call: Call<Message>,
+                response: Response<Message>
+            ) {
+                _hasAddProperty.value = true
+            }
         })
     }
 

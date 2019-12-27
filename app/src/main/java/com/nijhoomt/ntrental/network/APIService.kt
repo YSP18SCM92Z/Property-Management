@@ -54,8 +54,17 @@ private val retrofitGeocoding = Retrofit.Builder()
     .baseUrl(GEOCODING_BASE_URL)
     .build()
 
+private val retrofitAddProperty = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
+
 object PropertyManagementAPI {
 
+    val retrofitAddPropertyService: APIInterface by lazy {
+        retrofitAddProperty.create(APIInterface::class.java)
+    }
     val retrofitLoginService: APIInterface by lazy {
         retrofitLogin.create(APIInterface::class.java)
     }
