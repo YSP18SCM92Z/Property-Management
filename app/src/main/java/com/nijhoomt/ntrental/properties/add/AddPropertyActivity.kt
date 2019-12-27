@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.properties.detail
+package com.nijhoomt.ntrental.properties.add
 
 import android.content.Context
 import android.content.Intent
@@ -67,10 +67,11 @@ class AddPropertyActivity : AppCompatActivity() {
 //        "propertylatitude": "12.4565656",
 //        "propertylongitude": "3.5656565"
 
-            val addPropertyViewModelFactory = AddPropertyViewModelFactory(
-                formattedAddress = formattedString,
-                application = application
-            )
+            val addPropertyViewModelFactory =
+                AddPropertyViewModelFactory(
+                    formattedAddress = formattedString,
+                    application = application
+                )
 
             addPropertyViewModel = ViewModelProviders
                 .of(this, addPropertyViewModelFactory)
@@ -103,7 +104,7 @@ class AddPropertyActivity : AppCompatActivity() {
             addPropertyViewModel.addProperty(property)
             addPropertyViewModel.hasAddProperty.observe(this, Observer {
                 if (it == true) {
-                    startActivity(Intent(this, PropertiesActivity::class.java))
+                    finish()
                 } else {
                     Toast.makeText(
                         this,

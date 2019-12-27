@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.properties.detail
+package com.nijhoomt.ntrental.properties.maps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -7,15 +7,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.more.MoreActivity
+import com.nijhoomt.ntrental.properties.PropertiesActivity
 import kotlinx.android.synthetic.main.activity_property_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class PropertyDetailActivity : AppCompatActivity() {
 
     private lateinit var chosenProperty: Property
+    private lateinit var propertyDetailViewModel: PropertyDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,28 @@ class PropertyDetailActivity : AppCompatActivity() {
         else {
             tv_property_detail_price.text = "N/A"
         }
+
+        val propertyDetailViewModelFactory = PropertyDetailViewModelFactory(
+            chosenProperty.id,
+            application = application
+        )
+
+        propertyDetailViewModel =
+            ViewModelProviders
+                .of(this, propertyDetailViewModelFactory)
+                .get(PropertyDetailViewModel::class.java)
+
+        propertyDetailViewModel.hasDeleteProperty.observe(this, Observer {
+            if (it == true) {
+                finish()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Error: failed to remove a property",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
     }
 
     private fun setUpToolbar(chosenProperty: Property) {
@@ -58,6 +84,7 @@ class PropertyDetailActivity : AppCompatActivity() {
                 return true
             }
             R.id.btn_delete -> {
+                propertyDetailViewModel.removeProperty(chosenProperty.id)
                 finish()
                 return true
             }

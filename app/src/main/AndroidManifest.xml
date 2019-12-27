@@ -32,9 +32,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".properties.detail.PropertyMapsActivity"
+            android:name=".properties.maps.PropertyMapsActivity"
             android:label="@string/title_activity_property_maps"></activity>
-        <activity android:name=".properties.detail.AddPropertyActivity" />
+        <activity android:name=".properties.add.AddPropertyActivity" />
         <activity android:name=".forgotpassword.ForgotPasswordActivity" />
         <activity android:name=".properties.detail.PropertyDetailActivity" />
         <activity android:name=".properties.PropertiesActivity">

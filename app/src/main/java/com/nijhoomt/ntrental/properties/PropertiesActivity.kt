@@ -13,7 +13,7 @@ import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.model.UserId
 import com.nijhoomt.ntrental.more.MoreActivity
-import com.nijhoomt.ntrental.properties.detail.AddPropertyActivity
+import com.nijhoomt.ntrental.properties.add.AddPropertyActivity
 import com.nijhoomt.ntrental.properties.detail.PropertyDetailActivity
 import kotlinx.android.synthetic.main.activity_properties.*
 
@@ -48,7 +48,7 @@ class PropertiesActivity : AppCompatActivity() {
         recyclerview_properties.adapter = propertiesListAdapter
 
         propertyViewModel.property.observe(this, Observer {
-            propertiesListAdapter.submitList(it)
+            propertiesListAdapter.submitList(it.sortedByDescending { it.id })
         })
 
         propertiesListAdapter.setOnItemClickListener(object: PropertiesListAdapter.OnItemClickListener{

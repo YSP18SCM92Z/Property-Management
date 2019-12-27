@@ -8,16 +8,18 @@ import androidx.lifecycle.ViewModelProvider
  * Created by N & T on 12/26/2019.
  * Under instructions of Varun, Manisha, Ansari, & Rahul
  */
-class AddPropertyViewModelFactory(
-    private val formattedAddress: String,
+class PropertyDetailViewModelFactory(
+    private val propertyId: String,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AddPropertyViewModel::class.java)) {
-            return AddPropertyViewModel(formattedAddress, application) as T
+        if (modelClass.isAssignableFrom(PropertyDetailViewModel::class.java)) {
+            return PropertyDetailViewModel(
+                propertyId,
+                application
+            ) as T
         }
-
         throw IllegalArgumentException("Unknown viewmodel class") as Throwable
     }
 }

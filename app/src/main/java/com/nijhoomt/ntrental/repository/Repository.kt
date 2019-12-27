@@ -96,4 +96,10 @@ class Repository(application: Application) {
                 longitude = property.propertylongitude
             )
     }
+
+    fun removeProperty(propertyId: String): Call<Message> {
+        return PropertyManagementAPI
+            .retrofitService
+            .removePropertyAsync(propertyId)
+    }
 }

@@ -16,9 +16,10 @@ private const val FILE_NAME_REGISTER = "pro_mgt_reg.php"
 private const val FILE_NAME_PROPERTY_LIST = "property.php"
 private const val FILE_NAME_FORGOT_YOUR_PASSWORD = "pro_mgt_forgot_pass.php"
 private const val FILE_NAME_ADD_PROPERTY = "pro_mgt_add_pro.php"
-
+private const val FILE_NAME_REMOVE_PROPERTY = "remove-property.php"
 
 private const val GEOCODING_OUTPUT_FORMAT = "json"  // xml or json
+
 interface APIInterface {
 
     @GET("$FILE_NAME_LOGIN")
@@ -45,11 +46,9 @@ interface APIInterface {
 
     @GET("$FILE_NAME_PROPERTY_LIST")
     fun getPropertyListAsync(
-
         @Query("userid") userid: String,
         @Query("usertype") usertype: String
-
-        ) : Call<PropertyObject>
+    ): Call<PropertyObject>
 
     @GET("$FILE_NAME_FORGOT_YOUR_PASSWORD")
     fun getForgottenPasswordAsync(
@@ -58,15 +57,12 @@ interface APIInterface {
 
     @POST("$GEOCODING_OUTPUT_FORMAT")
     fun getLatLngObjectAsync(
-
         @Query("address") address: String,
         @Query("key") key: String
-
     ) : Call<GeocodingObject>
 
     @GET("$FILE_NAME_ADD_PROPERTY")
     fun addPropertyAsync(
-
         @Query("address") address: String,
         @Query("city") city: String,
         @Query("state") state: String,
@@ -78,20 +74,11 @@ interface APIInterface {
         @Query("usertype") usertype: String,
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String
-
     ): Call<Message>
 
+    @GET("$FILE_NAME_REMOVE_PROPERTY")
+    fun removePropertyAsync(
+        @Query("propertyid") propertyid: String
+    ): Call<Message>
 }
 
-
-/*
-@Query("id") id: String,
-@Query("propertyaddress") propertyaddress: String,
-@Query("propertycity") propertycity: String,
-@Query("propertystate") propertystate: String,
-@Query("propertycountry") propertycountry: String,
-@Query("propertystatus") propertystatus: String,
-@Query("propertypurchaseprice") propertypurchaseprice: String,
-@Query("propertymortageinfo") propertymortageinfo: String,
-@Query("propertylatitude") propertylatitude: String,
-@Query("propertylongitude") propertylongitude: String*/

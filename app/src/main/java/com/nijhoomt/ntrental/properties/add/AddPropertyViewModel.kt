@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.properties.detail
+package com.nijhoomt.ntrental.properties.add
 
 import android.app.Application
 import android.util.Log

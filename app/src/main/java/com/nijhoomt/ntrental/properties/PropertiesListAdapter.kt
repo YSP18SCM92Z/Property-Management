@@ -70,15 +70,15 @@ class PropertiesListAdapter(
         ) {
             itemView.apply {
 
-                tv_property_id.text = curProperty.id
-                tv_property_address.text = "${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
+                tv_property_id.text = "Id: ${curProperty.id}"
+                tv_property_address.text = "Address: ${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
 
                 if (curProperty.propertypurchaseprice.isNotEmpty()) {
                     tv_property_purchaseprice.text =
-                        "$%,.2f".format(curProperty.propertypurchaseprice.toDouble())
+                        "Purchase Price: $%,.2f".format(curProperty.propertypurchaseprice.toDouble())
                 }
                 else {
-                    tv_property_purchaseprice.text = "N/A"
+                    tv_property_purchaseprice.text = "Purchase Price: N/A"
                 }
 
                 setOnClickListener {

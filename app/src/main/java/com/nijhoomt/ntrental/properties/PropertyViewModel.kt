@@ -27,7 +27,6 @@ class PropertyViewModel(
 
     init {
         getPropertyList(userId)
-//        getPropertyList(UserId("3", "landlord"))
     }
 
     private fun getPropertyList(userId: UserId) {
