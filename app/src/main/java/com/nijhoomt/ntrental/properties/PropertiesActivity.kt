@@ -43,7 +43,7 @@ class PropertiesActivity : AppCompatActivity() {
         val propertiesListAdapter = PropertiesListAdapter(application)
         recyclerview_properties.adapter = propertiesListAdapter
 
-        propertyViewModel.property.observe(this, Observer {
+        propertyViewModel.propertyList.observe(this, Observer {
             propertiesListAdapter.submitList(it.sortedByDescending { it.id })
         })
 

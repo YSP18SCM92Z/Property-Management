@@ -108,4 +108,10 @@ class Repository(application: Application) {
             .retrofitService
             .getListOfTenantsOfChosenLandlordAsync(landlordId)
     }
+
+    fun getAllPropertiesForTenants(): Call<PropertyObject> {
+        return PropertyManagementAPI
+            .retrofitService
+            .getAllPropertiesForTenantsAsync()
+    }
 }

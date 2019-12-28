@@ -17,6 +17,6 @@ data class Property(
     val propertymortageinfo: String = "No",
     val propertyuserid: String,
     val propertyusertype: String,
-    val propertylatitude: String,
-    val propertylongitude: String
+    var propertylatitude: String,
+    var propertylongitude: String
 ) : Serializable

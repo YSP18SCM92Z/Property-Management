@@ -41,6 +41,13 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         setUpToolbar(chosenProperty)
 
+        if (chosenProperty.propertylatitude.isEmpty())
+            chosenProperty.propertylatitude = "41.903975"
+
+        if (chosenProperty.propertylongitude.isEmpty())
+            chosenProperty.propertylongitude = "-88.333125"
+
+        // 41.903975, -88.333125
         chosenPropertyLatLng = LatLng(
             chosenProperty.propertylatitude.toDouble(),
             chosenProperty.propertylongitude.toDouble()
