@@ -2,6 +2,7 @@ package com.nijhoomt.ntrental.properties.add
 
 import android.app.Application
 import android.util.Log
+import androidx.annotation.NonNull
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -47,22 +48,19 @@ class AddPropertyViewModel (
 
         call.enqueue(object : Callback<GeocodingObject> {
             override fun onFailure(call: Call<GeocodingObject>, t: Throwable) {
-                Log.e("Nijhoom", t.message)
+                Log.e("AddPropertyVM", "Failed to get latitude & longitude object: ${t.message}")
             }
 
             override fun onResponse(
                 call: Call<GeocodingObject>,
                 response: Response<GeocodingObject>
             ) {
-                //
                 _latLngObject.value = LatLngObject(
                     response.body()?.results!![0].geometry.location.lat,
                     response.body()?.results!![0].geometry.location.lng
                 )
-
                 _wellFormattedAddress.value = response.body()?.results!![0].formatted_address
             }
-
         })
     }
 
@@ -72,7 +70,7 @@ class AddPropertyViewModel (
 
         call.enqueue(object : Callback<Message> {
             override fun onFailure(call: Call<Message>, t: Throwable) {
-                Log.e("Nijhoom", t.message)
+                Log.e("AddPropertyVM", "Failed to add property: ${t.message}")
                 _hasAddProperty.value = false
             }
 
@@ -84,5 +82,4 @@ class AddPropertyViewModel (
             }
         })
     }
-
 }

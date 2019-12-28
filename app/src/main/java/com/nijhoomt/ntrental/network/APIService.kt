@@ -2,7 +2,6 @@ package com.nijhoomt.ntrental.network
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
@@ -29,12 +28,13 @@ private val retrofitGeocoding = Retrofit.Builder()
     .baseUrl(GEOCODING_BASE_URL)
     .build()
 
-// Same
+// Same (Can be reused for different calls as long as it returns "JSON" object)
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()
 
+// ===========================================================================
 // Unused but consider to
 //private val retrofitRxJavaRegister = Retrofit.Builder()
 //
@@ -43,6 +43,7 @@ private val retrofit = Retrofit.Builder()
 //    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //    .baseUrl(BASE_URL)
 //    .build()
+// ===========================================================================
 
 object PropertyManagementAPI {
 
@@ -54,17 +55,20 @@ object PropertyManagementAPI {
         retrofitRegister.create(APIInterface::class.java)
     }
 
+// ===========================================================================
+// Unused but consider to
 //    val retrofitRxJavaRegisterService: APIInterface by lazy {
 //        retrofitRxJavaRegister.create(APIInterface::class.java)
 //    }
+// ===========================================================================
 
     // Geocoding
     val retrofitGeocodingService: APIInterface by lazy {
         retrofitGeocoding.create(APIInterface::class.java)
     }
 
+    // Same (Can be reused for different calls as long as it returns "JSON" object)
     val retrofitService: APIInterface by lazy {
         retrofit.create(APIInterface::class.java)
     }
-
 }

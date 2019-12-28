@@ -2,6 +2,7 @@ package com.nijhoomt.ntrental.login
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,7 @@ import retrofit2.Response
  */
 class LoginViewModel(
     loginCredential: LoginCredential,
-    application: Application
+    private val application: Application
 ) : ViewModel() {
 
     private val repository = Repository(application)
@@ -33,23 +34,22 @@ class LoginViewModel(
     }
 
     private fun initiateLogin(loginCredential: LoginCredential) {
-//        val call = PropertyManagementAPI
-//            .retrofitLoginService
-//            .postUserAsync(
-//                password = loginCredential.password,
-//                email = loginCredential.email)
-//
+
         val call = repository.signUserIn(loginCredential)
 
         call.enqueue(object : Callback<LoginObject>{
             override fun onFailure(call: Call<LoginObject>, t: Throwable) {
-                Log.e("Nijhoom", t.message)
+                Log.e("LoginVM", "Failed to login: ${t.message}")
+                Toast.makeText(
+                    application,
+                    "LoginVM: Failed to login: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             override fun onResponse(call: Call<LoginObject>, response: Response<LoginObject>) {
                 _loginObject.value = response.body()
             }
-
         })
     }
 }

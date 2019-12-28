@@ -1,4 +1,4 @@
-package com.nijhoomt.ntrental.properties
+package com.nijhoomt.ntrental.properties.tenants
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.row_property.view.*
  * Created by N & T on 12/25/2019.
  * Under instructions of Varun, Manisha, Ansari, & Rahul
  */
-class PropertiesListAdapter(
+class PropertyTenantsListAdapter(
     @NonNull val application: Application
-) : ListAdapter<Property, PropertiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<Property, PropertyTenantsListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Property>() {
@@ -31,7 +31,10 @@ class PropertiesListAdapter(
                 return oldItem.propertyaddress == newItem.propertyaddress &&
                         oldItem.propertycity == newItem.propertycity &&
                         oldItem.propertystate == newItem.propertystate &&
+
+                        // Country is ZIPCODE
                         oldItem.propertycountry == newItem.propertycountry &&
+
                         oldItem.propertystatus == newItem.propertystatus &&
                         oldItem.propertypurchaseprice == newItem.propertypurchaseprice &&
                         oldItem.propertymortageinfo == newItem.propertymortageinfo &&

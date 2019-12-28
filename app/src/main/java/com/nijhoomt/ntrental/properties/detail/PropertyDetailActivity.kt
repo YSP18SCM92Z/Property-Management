@@ -1,6 +1,7 @@
 package com.nijhoomt.ntrental.properties.detail
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
@@ -20,6 +21,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
+import com.nijhoomt.ntrental.properties.tenants.PropertyTenantsActivity
 import kotlinx.android.synthetic.main.activity_property_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -36,6 +38,7 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_property_detail)
 
         chosenProperty = intent.getSerializableExtra("SELECTED_PROPERTY") as Property
+
         setUpToolbar(chosenProperty)
 
         chosenPropertyLatLng = LatLng(
@@ -43,29 +46,8 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             chosenProperty.propertylongitude.toDouble()
         )
 
-        Toast.makeText(this, """
-            $chosenProperty
-        """.trimIndent(), Toast.LENGTH_LONG).show()
-
-        tv_property_detail_id.text = "Id: ${chosenProperty.id}"
-        tv_property_detail_address.text = "Address: \n${chosenProperty.propertyaddress}\n${chosenProperty.propertycity}, ${chosenProperty.propertystate} ${chosenProperty.propertycountry}"
-
-        if (chosenProperty.propertypurchaseprice.isNotEmpty()) {
-            tv_property_detail_price.text = "$%,.2f".format(chosenProperty.propertypurchaseprice.toDouble())
-        }
-        else {
-            tv_property_detail_price.text = "N/A"
-        }
-
-        val propertyDetailViewModelFactory = PropertyDetailViewModelFactory(
-            chosenProperty.id,
-            application = application
-        )
-
-        propertyDetailViewModel =
-            ViewModelProviders
-                .of(this, propertyDetailViewModelFactory)
-                .get(PropertyDetailViewModel::class.java)
+        updateUIBasicInfoOfProperty()
+        initializePropertyDetailViewModel()
 
         propertyDetailViewModel.hasDeleteProperty.observe(this, Observer {
             if (it == true) {
@@ -79,9 +61,39 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
+        btn_property_detail_add_tenant.setOnClickListener {
+            startActivity(Intent(this, PropertyTenantsActivity::class.java))
+        }
+
+        // Integrate Google Maps into this activity
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
+    }
+
+    private fun initializePropertyDetailViewModel() {
+        val propertyDetailViewModelFactory = PropertyDetailViewModelFactory(
+            chosenProperty.id,
+            application = application
+        )
+
+        propertyDetailViewModel =
+            ViewModelProviders
+                .of(this, propertyDetailViewModelFactory)
+                .get(PropertyDetailViewModel::class.java)
+    }
+
+    private fun updateUIBasicInfoOfProperty() {
+        tv_property_detail_id.text = "Id: ${chosenProperty.id}"
+        tv_property_detail_address.text =
+            "Address: \n${chosenProperty.propertyaddress}\n${chosenProperty.propertycity}, ${chosenProperty.propertystate} ${chosenProperty.propertycountry}"
+
+        if (chosenProperty.propertypurchaseprice.isNotEmpty()) {
+            tv_property_detail_price.text =
+                "Price: $%,.2f".format(chosenProperty.propertypurchaseprice.toDouble())
+        } else {
+            tv_property_detail_price.text = "Price: N/A"
+        }
     }
 
     /**
@@ -98,7 +110,7 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val zoomLevel = 17.5f
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in cho and move the camera
         map.addMarker(MarkerOptions().position(chosenPropertyLatLng).title(chosenProperty.propertyaddress))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(chosenPropertyLatLng, zoomLevel))
         map.mapType = GoogleMap.MAP_TYPE_SATELLITE

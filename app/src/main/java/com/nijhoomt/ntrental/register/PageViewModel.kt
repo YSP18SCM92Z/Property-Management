@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.RegisterCredential
-import com.nijhoomt.ntrental.network.PropertyManagementAPI
 import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,12 +21,11 @@ class PageViewModel(
 //        "Hello world from section: $it"
 //    }
 
-    private var _responseMessage = MutableLiveData<String>()
     private var repository = Repository(application)
 
+    private var _responseMessage = MutableLiveData<String>()
     val responseMessage: LiveData<String>
         get() = _responseMessage
-
 
     private val _index = MutableLiveData<Int>()
     val index: LiveData<Int>
@@ -50,24 +48,17 @@ class PageViewModel(
     }
 
     private fun initiateRegister(registerCredential: RegisterCredential) {
-//
-//        val call = PropertyManagementAPI.retrofitRegisterService
-//            .postNewUserAsync(email = registerCredential.email,
-//                landlord_email = registerCredential.landlored_email,
-//                password = registerCredential.password,
-//                account_for = registerCredential.account_for)
 
         val call = repository.createNewUser(registerCredential)
 
         call.enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.e("Nijhoom", t.message)
+                Log.e("PageVM", "Failed to register user: ${t.message}")
             }
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 _responseMessage.value = response.body()
             }
-
         })
 
 //        val call = PropertyManagementAPI.retrofitRxJavaRegisterService
@@ -88,7 +79,7 @@ class PageViewModel(
 //                }
 //
 //                override fun onError(e: Throwable) {
-//                    Log.e("Nijhoom", e.message)
+//                    Log.e("PageVM", "Failed to register user: ${e.message}")
 //                }
 //            })
 //

@@ -27,23 +27,19 @@ class PropertiesActivity : AppCompatActivity() {
 
         // Show the list of properties the landlord currently have
         val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
-        var userId = myPref.getString("userId", "").toString()
-        var userType = myPref.getString("userType", "").toString()
-
+        val userId = myPref.getString("userId", "").toString()
+        val userType = myPref.getString("userType", "").toString()
 
         //Initialize userID Model
         val userCred = UserId(userId, userType)
 
-        val propertyViewModelFactory = PropertyViewModelFactory(
-            userId = userCred,
-            application = application
-        )
-
         val propertyViewModel =
-            ViewModelProviders
-                .of(this, propertyViewModelFactory)
-                .get(PropertyViewModel::class.java)
+            initializePropertyViewModel(userCred)
 
+        // ListAdapter is completely different from ListView (We normally compare ListView vs. RecyclerView)
+        // We compare the performance of ListAdapter with the normal RecyclerView Adapter
+        // ListAdapter has DiffUtil built-in >> Give us a better performance whenever we wanna show
+        // a list of item.
         val propertiesListAdapter = PropertiesListAdapter(application)
         recyclerview_properties.adapter = propertiesListAdapter
 
@@ -62,9 +58,19 @@ class PropertiesActivity : AppCompatActivity() {
         fab_properties.setOnClickListener {
             startActivity(Intent(this, AddPropertyActivity::class.java))
         }
+    }
 
-        // Just like to-do app, allow landlord to CRUD on the property right here
+    private fun initializePropertyViewModel(userCred: UserId): PropertyViewModel {
+        val propertyViewModelFactory = PropertyViewModelFactory(
+            userId = userCred,
+            application = application
+        )
 
+        val propertyViewModel =
+            ViewModelProviders
+                .of(this, propertyViewModelFactory)
+                .get(PropertyViewModel::class.java)
+        return propertyViewModel
     }
 
     private fun setUpToolbar() {

@@ -14,7 +14,6 @@ class PropertyViewModelFactory(
         if (modelClass.isAssignableFrom(PropertyViewModel::class.java)){
             return PropertyViewModel(userId, application) as T
         }
-
-        throw IllegalArgumentException("Unknown viewmodel class") as Throwable
+        throw IllegalArgumentException("Unknown viewmodel class")
     }
 }

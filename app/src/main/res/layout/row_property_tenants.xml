@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/tv_property_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property ID" />
+
+        <TextView
+            android:id="@+id/tv_property_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property Address" />
+
+        <TextView
+            android:id="@+id/tv_property_purchaseprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property Purchase Price" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -2,15 +2,21 @@ package com.nijhoomt.ntrental.forgotpassword
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nijhoomt.ntrental.model.ForgotPasswordCred
+import com.nijhoomt.ntrental.model.ForgotPasswordObject
 import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ForgotPasswordViewModel(forgotPasswordCred: ForgotPasswordCred, application: Application): ViewModel() {
+class ForgotPasswordViewModel(
+    forgotPasswordCred: ForgotPasswordCred,
+    private val application: Application
+) : ViewModel() {
 
     private val repository = Repository(application)
 
@@ -29,7 +35,12 @@ class ForgotPasswordViewModel(forgotPasswordCred: ForgotPasswordCred, applicatio
 
         call.enqueue(object: Callback<ForgotPasswordObject>{
             override fun onFailure(call: Call<ForgotPasswordObject>, t: Throwable) {
-                Log.d("Failed", "Failed")
+                Log.e("ForgotPasswordVM", "Failed to get forgotten password: ${t.message}")
+                Toast.makeText(
+                    application,
+                    "ForgotPasswordVM: Failed to login: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             override fun onResponse(
@@ -38,9 +49,6 @@ class ForgotPasswordViewModel(forgotPasswordCred: ForgotPasswordCred, applicatio
             ) {
                 _forgotPasswordObject.value = response.body()
             }
-
         })
-
     }
-
 }

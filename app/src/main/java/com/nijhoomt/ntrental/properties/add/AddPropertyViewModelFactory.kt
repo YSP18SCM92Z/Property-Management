@@ -20,7 +20,6 @@ class AddPropertyViewModelFactory(
                 application
             ) as T
         }
-
-        throw IllegalArgumentException("Unknown viewmodel class") as Throwable
+        throw IllegalArgumentException("Unknown viewmodel class")
     }
 }
