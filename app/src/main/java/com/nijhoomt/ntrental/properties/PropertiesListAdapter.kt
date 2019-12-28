@@ -31,10 +31,7 @@ class PropertiesListAdapter(
                 return oldItem.propertyaddress == newItem.propertyaddress &&
                         oldItem.propertycity == newItem.propertycity &&
                         oldItem.propertystate == newItem.propertystate &&
-
-                        // Country is ZIPCODE
                         oldItem.propertycountry == newItem.propertycountry &&
-
                         oldItem.propertystatus == newItem.propertystatus &&
                         oldItem.propertypurchaseprice == newItem.propertypurchaseprice &&
                         oldItem.propertymortageinfo == newItem.propertymortageinfo &&

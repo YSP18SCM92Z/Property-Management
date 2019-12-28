@@ -1,8 +1,8 @@
 package com.nijhoomt.ntrental.repository
 
 import android.app.Application
-import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordCred
-import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordObject
+import com.nijhoomt.ntrental.model.ForgotPasswordCred
+import com.nijhoomt.ntrental.model.ForgotPasswordObject
 import com.nijhoomt.ntrental.model.*
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
 import retrofit2.Call
@@ -16,7 +16,7 @@ private const val GEOCODING_API_KEY = "AIzaSyD8MNG7RMklDq15lfOYzAI4iz4bKb-_TS4"
 class Repository(application: Application) {
 
 
-    // Local/Database Data Sources
+// Local/Database Data Sources
 
 //    private var cartDao: CartDAO
 //    private var allCarts: LiveData<List<Cart>>
@@ -32,7 +32,7 @@ class Repository(application: Application) {
 //
 //    }
 
-    // Remote Data Source
+// Remote Data Source
 
     fun createNewUser(registerCredential: RegisterCredential): Call<String> {
         return PropertyManagementAPI.retrofitRegisterService
@@ -101,5 +101,11 @@ class Repository(application: Application) {
         return PropertyManagementAPI
             .retrofitService
             .removePropertyAsync(propertyId)
+    }
+
+    fun getListOfTenantsOfChosenLandlord(landlordId: String): Call<TenantObject> {
+        return PropertyManagementAPI
+            .retrofitService
+            .getListOfTenantsOfChosenLandlordAsync(landlordId)
     }
 }

@@ -34,17 +34,15 @@ class PropertyViewModel(
 
         call.enqueue(object : Callback<PropertyObject> {
             override fun onFailure(call: Call<PropertyObject>, t: Throwable) {
-                Log.e("Nijhoom", t.message)
+                Log.e("PropertyVM", "Failed to get property list: ${t.message}")
             }
 
             override fun onResponse(
                 call: Call<PropertyObject>,
                 response: Response<PropertyObject>
             ) {
-                //
                 _propertyList.value = response.body()?.Property
             }
-
         })
     }
 

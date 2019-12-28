@@ -18,7 +18,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-   <!-- <style name="InputTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <!-- <style name="InputTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/colorAccent</item>
     <item name="android:fontFamily">@font/kollektif</item>
         <item name="boxStr"
@@ -56,6 +56,11 @@
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

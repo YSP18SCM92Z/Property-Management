@@ -49,8 +49,6 @@ class PlaceholderFragment : Fragment() {
             view.tiet_register_password.text.toString() == "" ||
             view.tiet_register_confirm_password.text.toString() == ""
         ) {
-
-
             if (view.tiet_register_user_email.text.toString() == "") {
                 view.tiet_register_user_email.error =
                     "User Email field is required!"
@@ -65,13 +63,11 @@ class PlaceholderFragment : Fragment() {
                 view.tiet_register_confirm_password.error =
                     "Confirm Password field is required!"
             }
-
         }
         // Password not match
         else if (view.tiet_register_password.text.toString() !=
             view.tiet_register_confirm_password.text.toString()
         ) {
-
             view.tiet_register_confirm_password.error =
                 "Password does not match!"
         } else {
@@ -85,7 +81,6 @@ class PlaceholderFragment : Fragment() {
             view.tiet_register_password.text.toString() == "" ||
             view.tiet_register_confirm_password.text.toString() == ""
         ) {
-
             if (view.tiet_register_landlord_property_manager_email.text.toString() == "") {
                 view.tiet_register_landlord_property_manager_email.error =
                     "Landlord/Property Manager field is required!"
@@ -105,13 +100,11 @@ class PlaceholderFragment : Fragment() {
                 view.tiet_register_confirm_password.error =
                     "Confirm Password field is required!"
             }
-
         }
         // Password not match
         else if (view.tiet_register_password.text.toString() !=
             view.tiet_register_confirm_password.text.toString()
         ) {
-
             view.tiet_register_confirm_password.error =
                 "Password does not match!"
         } else {

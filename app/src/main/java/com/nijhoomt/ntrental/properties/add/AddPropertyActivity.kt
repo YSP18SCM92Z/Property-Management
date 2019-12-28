@@ -3,6 +3,7 @@ package com.nijhoomt.ntrental.properties.add
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,7 +15,6 @@ import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.LatLngObject
 import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.more.MoreActivity
-import com.nijhoomt.ntrental.properties.PropertiesActivity
 import kotlinx.android.synthetic.main.activity_add_property.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -36,19 +36,24 @@ class AddPropertyActivity : AppCompatActivity() {
 //        val id: String,
 //        How can we make sure the id is unique?
 //        >> Server already takes care of the uniqueness but not validation
-//        Same info still can be readded. Validation of the same property will be your responsibility
+//        Same info still can be readded. Validation of the same property will be our responsibility
 
 
 //        User Inputs
 //        "propertystatus": "tenants",
 //        "propertypurchaseprice": "12000",
 //        "propertymortageinfo": "no",
+
             val address = tiet_add_property_address.text.toString()
             val city = tiet_add_property_city.text.toString()
             val state = tiet_add_property_state.text.toString()
             val country = tiet_add_property_country.text.toString()
             val purchasePrice = tiet_add_property_purchase_price.text.toString()
 
+            // TODO validateUserInputs()
+
+//            Construct Formatted Address so that we can send to Google API Geocoding for
+//            getting the precise latitude & longitude
             val formattedString = constructFormattedAddress()
 
 
@@ -57,8 +62,8 @@ class AddPropertyActivity : AppCompatActivity() {
 //        "propertyusertype": "landlord",
 
             val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
-            var userId = myPref.getString("userId", "").toString()
-            var userType = myPref.getString("userType", "").toString()
+            val userId = myPref.getString("userId", "").toString()
+            val userType = myPref.getString("userType", "").toString()
 
 
 //         After Converting the address to LatLng using Reverse Geocoding
@@ -67,15 +72,9 @@ class AddPropertyActivity : AppCompatActivity() {
 //        "propertylatitude": "12.4565656",
 //        "propertylongitude": "3.5656565"
 
-            val addPropertyViewModelFactory =
-                AddPropertyViewModelFactory(
-                    formattedAddress = formattedString,
-                    application = application
-                )
-
-            addPropertyViewModel = ViewModelProviders
-                .of(this, addPropertyViewModelFactory)
-                .get(AddPropertyViewModel::class.java)
+//         While creating the ViewModel, we are also in the processing of gathering the correct LatLng
+//         For the specified address
+            initializeAddPropertyViewModel(formattedString)
 
             addPropertyViewModel.latLngObject.observe(this, Observer {
                 lagLngObject = it
@@ -85,15 +84,20 @@ class AddPropertyActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
+                // Construct property instance with all the provided/found information
                 property = Property(
+                    // API server responsibility
                     id = "",
+                    // User Inputs
                     propertyaddress = address,
                     propertycity = city,
                     propertystate = state,
                     propertycountry = country,
                     propertypurchaseprice = purchasePrice,
+                    // Session Info
                     propertyuserid = userId,
                     propertyusertype = userType,
+                    // Geocoding
                     propertylatitude = lagLngObject.lat.toString(),
                     propertylongitude = lagLngObject.lng.toString()
                 )
@@ -106,6 +110,7 @@ class AddPropertyActivity : AppCompatActivity() {
                 if (it == true) {
                     finish()
                 } else {
+                    Log.e("AddPropertyV", "Error: failed to add a property")
                     Toast.makeText(
                         this,
                         "Error: failed to add a property",
@@ -114,8 +119,18 @@ class AddPropertyActivity : AppCompatActivity() {
                 }
             })
         }
+    }
 
+    private fun initializeAddPropertyViewModel(formattedString: String) {
+        val addPropertyViewModelFactory =
+            AddPropertyViewModelFactory(
+                formattedAddress = formattedString,
+                application = application
+            )
 
+        addPropertyViewModel = ViewModelProviders
+            .of(this, addPropertyViewModelFactory)
+            .get(AddPropertyViewModel::class.java)
     }
 
     private fun constructFormattedAddress(): String {
@@ -133,11 +148,6 @@ class AddPropertyActivity : AppCompatActivity() {
         sb.append("+" + "$state".trim() + '+')
         sb.append("$zipcode".trim() + ',')
         sb.append("+" + "$country".trim())
-        //        "propertyaddress": "fla1234",
-        //        "propertycity": "Noida",
-        //        "propertystate": "UP",
-        //        "propertycountry": "India",
-
 
         return sb.toString()
     }

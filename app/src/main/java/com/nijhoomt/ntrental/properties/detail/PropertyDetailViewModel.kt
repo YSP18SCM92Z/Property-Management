@@ -26,10 +26,6 @@ class PropertyDetailViewModel(
     val hasDeleteProperty: LiveData<Boolean>
         get() = _hasDeleteProperty
 
-//    init {
-//        removeProperty(propertyId)
-//    }
-
     internal fun removeProperty(propertyId: String) {
         val call = repository.removeProperty(propertyId)
 
@@ -45,7 +41,6 @@ class PropertyDetailViewModel(
             ) {
                 _hasDeleteProperty.value = true
             }
-
         })
     }
 }
