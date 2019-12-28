@@ -66,11 +66,9 @@ class PropertiesActivity : AppCompatActivity() {
             application = application
         )
 
-        val propertyViewModel =
-            ViewModelProviders
-                .of(this, propertyViewModelFactory)
-                .get(PropertyViewModel::class.java)
-        return propertyViewModel
+        return ViewModelProviders
+            .of(this, propertyViewModelFactory)
+            .get(PropertyViewModel::class.java)
     }
 
     private fun setUpToolbar() {

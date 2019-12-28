@@ -2,10 +2,12 @@ package com.nijhoomt.ntrental.properties.tenants
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nijhoomt.ntrental.model.*
+import com.nijhoomt.ntrental.model.Tenant
+import com.nijhoomt.ntrental.model.TenantObject
 import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,7 +15,7 @@ import retrofit2.Response
 
 class PropertyTenantsViewModel(
     landlordId: String,
-    application: Application
+    private val application: Application
 ) : ViewModel() {
 
     private val repository = Repository(application)
@@ -24,7 +26,8 @@ class PropertyTenantsViewModel(
         get() = _listOfTenantsOfChosenLandlord
 
     init {
-        getListOfTenantsOfChosenLandlord(landlordId)
+//        getListOfTenantsOfChosenLandlord(landlordId)
+        getListOfTenantsOfChosenLandlord("32")
     }
 
     private fun getListOfTenantsOfChosenLandlord(landlordId: String) {
@@ -32,7 +35,15 @@ class PropertyTenantsViewModel(
 
         call.enqueue(object : Callback<TenantObject> {
             override fun onFailure(call: Call<TenantObject>, t: Throwable) {
-                Log.e("PropertyTenantsVM", t.message)
+                Log.e(
+                    "PropertyTenantsVM",
+                    "Failed to get a list of tenants for this chosen landlord: ${t.message}"
+                )
+                Toast.makeText(
+                    application,
+                    "PropertyTenantsVM: Failed to get a list of tenants for this chosen landlord: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             override fun onResponse(
@@ -41,7 +52,6 @@ class PropertyTenantsViewModel(
             ) {
                 _listOfTenantsOfChosenLandlord.value = response.body()?.listOfTenantsOfChosenLandlord
             }
-
         })
     }
 

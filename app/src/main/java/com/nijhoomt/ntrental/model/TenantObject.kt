@@ -1,6 +1,7 @@
 package com.nijhoomt.ntrental.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by N & T on 12/28/2019.
@@ -18,4 +19,4 @@ data class Tenant(
     @SerializedName("tenantmobile") val tenantMobile: String,
     @SerializedName("propertyid") val propertyId: String,
     @SerializedName("landlordid") val landlordId: String
-)
+) : Serializable

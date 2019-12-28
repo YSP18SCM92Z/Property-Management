@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nijhoomt.ntrental.R
-import com.nijhoomt.ntrental.model.Property
+import com.nijhoomt.ntrental.model.Tenant
 import kotlinx.android.synthetic.main.row_property.view.*
 
 /**
@@ -19,71 +19,55 @@ import kotlinx.android.synthetic.main.row_property.view.*
  */
 class PropertyTenantsListAdapter(
     @NonNull val application: Application
-) : ListAdapter<Property, PropertyTenantsListAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<Tenant, PropertyTenantsListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Property>() {
-            override fun areItemsTheSame(oldItem: Property, newItem: Property): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Tenant>() {
+            override fun areItemsTheSame(oldItem: Tenant, newItem: Tenant): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Property, newItem: Property): Boolean {
-                return oldItem.propertyaddress == newItem.propertyaddress &&
-                        oldItem.propertycity == newItem.propertycity &&
-                        oldItem.propertystate == newItem.propertystate &&
-
-                        // Country is ZIPCODE
-                        oldItem.propertycountry == newItem.propertycountry &&
-
-                        oldItem.propertystatus == newItem.propertystatus &&
-                        oldItem.propertypurchaseprice == newItem.propertypurchaseprice &&
-                        oldItem.propertymortageinfo == newItem.propertymortageinfo &&
-                        oldItem.propertyuserid == newItem.propertyuserid &&
-                        oldItem.propertyusertype == newItem.propertyusertype &&
-                        oldItem.propertylatitude == newItem.propertylatitude &&
-                        oldItem.propertylongitude == newItem.propertylongitude
+            override fun areContentsTheSame(oldItem: Tenant, newItem: Tenant): Boolean {
+                return oldItem.tenantName == newItem.tenantName &&
+                        oldItem.tenantAddress == newItem.tenantAddress &&
+                        oldItem.tenantEmail == newItem.tenantEmail &&
+                        oldItem.tenantMobile == newItem.tenantMobile &&
+                        oldItem.landlordId == newItem.landlordId &&
+                        oldItem.propertyId == newItem.propertyId
             }
         }
     }
 
     private lateinit var listener: OnItemClickListener
 
-    fun getPropertyAt(position: Int): Property = getItem(position)
+    fun getTenantAt(position: Int): Tenant = getItem(position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_property, parent, false)
+            .inflate(R.layout.row_property_tenants, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val curProperty = getItem(position)
-        holder.bindDataToView(curProperty, position)
+        val curTenant = getItem(position)
+        holder.bindDataToView(curTenant, position)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
         fun bindDataToView(
-            curProperty: Property,
+            curTenant: Tenant,
             position: Int
         ) {
             itemView.apply {
 
-                tv_property_id.text = "Id: ${curProperty.id}"
-                tv_property_address.text = "Address: ${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
-
-                if (curProperty.propertypurchaseprice.isNotEmpty()) {
-                    tv_property_purchaseprice.text =
-                        "Purchase Price: $%,.2f".format(curProperty.propertypurchaseprice.toDouble())
-                }
-                else {
-                    tv_property_purchaseprice.text = "Purchase Price: N/A"
-                }
+                tv_property_id.text = "Id: ${curTenant.id}"
+                tv_property_address.text = "Address: ${curTenant.tenantAddress}"
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(curProperty)
+                        listener.onItemClick(curTenant)
                     }
                 }
             }
@@ -91,7 +75,7 @@ class PropertyTenantsListAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(property: Property)
+        fun onItemClick(tenant: Tenant)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
