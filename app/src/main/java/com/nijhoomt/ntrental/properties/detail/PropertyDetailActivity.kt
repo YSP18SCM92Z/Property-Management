@@ -1,11 +1,15 @@
 package com.nijhoomt.ntrental.properties.detail
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +25,7 @@ import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    private val REQUEST_LOCATION_PERMISSION = 1
     private lateinit var chosenProperty: Property
     private lateinit var propertyDetailViewModel: PropertyDetailViewModel
     private lateinit var map: GoogleMap
@@ -96,6 +101,8 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         map.addMarker(MarkerOptions().position(chosenPropertyLatLng).title(chosenProperty.propertyaddress))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(chosenPropertyLatLng, zoomLevel))
+        map.mapType = GoogleMap.MAP_TYPE_SATELLITE
+        enableMyLocation()
     }
 
     private fun setUpToolbar(chosenProperty: Property) {
@@ -139,5 +146,39 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun isPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) === PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun enableMyLocation() {
+        if (isPermissionGranted()) {
+            map.isMyLocationEnabled = true
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION_PERMISSION
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        // Check if locaditon permissions are granted and if so enable the location
+        // data layer
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                enableMyLocation()
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

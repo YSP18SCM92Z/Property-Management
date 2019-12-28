@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:orientation="vertical"
     android:weightSum="2"
     tools:context=".properties.detail.PropertyDetailActivity">
 
     <include layout="@layout/custom_toolbar"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="8dp">
 
         <fragment
             android:id="@+id/map"
@@ -29,7 +32,7 @@
 <!--            android:scaleType="centerCrop"-->
 <!--            android:src="@drawable/properties_001" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
