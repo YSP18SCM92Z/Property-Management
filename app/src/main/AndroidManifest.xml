@@ -17,9 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".properties.tenants.add_tenant_by_landlord.AddTenantActivity"></activity>
         <activity
             android:name=".properties.tenants.detail.PropertyTenantsDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity
             android:name=".properties.tenants.PropertyTenantsActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -109,9 +109,23 @@ class Repository(application: Application) {
             .getListOfTenantsOfChosenLandlordAsync(landlordId)
     }
 
+
     fun getAllPropertiesForTenants(): Call<PropertyObject> {
         return PropertyManagementAPI
             .retrofitService
             .getAllPropertiesForTenantsAsync()
+
+    fun addTenantsByLandlord(addTenantCred: AddTenantCred): Call<String>{
+        return PropertyManagementAPI
+            .retrofitAddTenantService
+            .addTenantsByLandlordAsync(
+                name = addTenantCred.name,
+                email = addTenantCred.email,
+                address = addTenantCred.address,
+                mobile = addTenantCred.mobile,
+                propertyid = addTenantCred.propertyid,
+                landlordid = addTenantCred.landlordid
+
+            )
     }
 }
