@@ -5,12 +5,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_fortenants_allproperties"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_tenant_dashboard_button_containers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="5"
-        tools:listitem="@layout/row_fortenants_each_property" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_tenant_dashboard_property"
+            android:layout_width="@dimen/dashboard_mcardview_width"
+            android:layout_height="@dimen/dashboard_mcardview_height"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#f06292"
+            android:elevation="@dimen/dashboard_mcardview_elevation"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.051"
+            tools:targetApi="lollipop">
+
+            <TextView
+                style="@style/DashboardTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_property" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_tenant_dashboard_transaction"
+            android:layout_width="@dimen/dashboard_mcardview_width"
+            android:layout_height="@dimen/dashboard_mcardview_height"
+            android:backgroundTint="#64b5f6"
+            android:elevation="@dimen/dashboard_mcardview_elevation"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcv_tenant_dashboard_property"
+            app:layout_constraintEnd_toStartOf="@+id/mcv_tenant_dashboard_tenant"
+            app:layout_constraintStart_toEndOf="@+id/mcv_tenant_dashboard_property"
+            app:layout_constraintTop_toTopOf="@+id/mcv_tenant_dashboard_property"
+            tools:targetApi="lollipop">
+
+            <TextView
+                style="@style/DashboardTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_transaction" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_tenant_dashboard_rent"
+            android:layout_width="@dimen/dashboard_mcardview_width"
+            android:layout_height="@dimen/dashboard_mcardview_height"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#4dd0e1"
+            android:elevation="@dimen/dashboard_mcardview_elevation"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/mcv_tenant_dashboard_transaction"
+            app:layout_constraintStart_toStartOf="@+id/mcv_tenant_dashboard_property"
+            app:layout_constraintTop_toBottomOf="@+id/mcv_tenant_dashboard_property"
+            tools:targetApi="lollipop">
+
+            <TextView
+                style="@style/DashboardTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_rent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_tenant_dashboard_tenant"
+            android:layout_width="@dimen/dashboard_mcardview_width"
+            android:layout_height="@dimen/dashboard_mcardview_height"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#80cbc4"
+            android:elevation="@dimen/dashboard_mcardview_elevation"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcv_tenant_dashboard_transaction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mcv_tenant_dashboard_transaction"
+            app:layout_constraintVertical_bias="0.0"
+            tools:targetApi="lollipop">
+
+            <TextView
+                style="@style/DashboardTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_tenant" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_tenant_dashboard_vendor"
+            android:layout_width="@dimen/dashboard_mcardview_width"
+            android:layout_height="@dimen/dashboard_mcardview_height"
+            android:backgroundTint="#ef9a9a"
+            android:elevation="@dimen/dashboard_mcardview_elevation"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mcv_tenant_dashboard_rent"
+            app:layout_constraintEnd_toEndOf="@+id/mcv_tenant_dashboard_tenant"
+            app:layout_constraintStart_toStartOf="@+id/mcv_tenant_dashboard_transaction"
+            app:layout_constraintTop_toTopOf="@+id/mcv_tenant_dashboard_rent"
+            tools:targetApi="lollipop">
+
+            <TextView
+                style="@style/DashboardTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_vendor" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_fortenants_allproperties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mcv_tenant_dashboard_rent"
+            tools:itemCount="5"
+            tools:listitem="@layout/row_fortenants_each_property" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
