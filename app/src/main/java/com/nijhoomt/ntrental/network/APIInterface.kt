@@ -18,7 +18,7 @@ private const val FILE_NAME_ALL_PROPERTY_FOR_TENANTS = "pro_mgt_property_all.php
 private const val FILE_NAME_ADD_TENANTS_BY_PROPERTY = "pro_mgt_add_tenants.php"
 
 
-private const val GEOCODING_OUTPUT_FORMAT = "json"  // xml or json
+private const val GOOGLE_API_OUTPUT_FORMAT = "json"  // xml or json
 
 interface APIInterface {
 
@@ -57,11 +57,19 @@ interface APIInterface {
         @Query("email") email: String
     ) : Call<ForgotPasswordObject>
 
-    @POST("$GEOCODING_OUTPUT_FORMAT")
+    @POST("$GOOGLE_API_OUTPUT_FORMAT")
     fun getLatLngObjectAsync(
         @Query("address") address: String,
         @Query("key") key: String
     ) : Call<GeocodingObject>
+
+    @POST("$GOOGLE_API_OUTPUT_FORMAT")
+    fun getDirectionAsync(
+        @Query("origin") origin: String,
+        @Query("destination") destination: String,
+        @Query("key") key: String,
+        @Query("mode") mode: String
+    ) : Call<DirectionObject>
 
     @GET("$FILE_NAME_ADD_PROPERTY")
     fun addPropertyAsync(

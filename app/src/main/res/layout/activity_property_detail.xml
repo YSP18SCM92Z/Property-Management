@@ -1,95 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:weightSum="2"
-    tools:context=".properties.detail.PropertyDetailActivity">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/custom_toolbar"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_property_detail_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_directions_white_24dp"
+        app:layout_anchor="@+id/mcv_property_detail_map"
+        app:layout_anchorGravity="bottom|end"
+        app:maxImageSize="35dp" />
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:elevation="8dp"
-        app:cardCornerRadius="8dp"
-        android:layout_margin="8dp">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:weightSum="2"
+        tools:context=".properties.detail.PropertyDetailActivity">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <include layout="@layout/custom_toolbar" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_property_detail_map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".properties.maps.PropertyMapsActivity" />
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/properties_001" />-->
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:layout_weight="1"
-        android:elevation="8dp"
-        app:cardCornerRadius="8dp">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="16dp">
+                tools:context=".properties.maps.PropertyMapsActivity" />
 
-                <TextView
-                    android:id="@+id/tv_property_detail_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Id"
-                    android:textSize="24dp" />
+            <!--        <ImageView-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="match_parent"-->
+            <!--            android:scaleType="centerCrop"-->
+            <!--            android:src="@drawable/properties_001" />-->
 
-                <TextView
-                    android:id="@+id/tv_property_detail_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price"
-                    android:textSize="24dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tv_property_detail_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textSize="24dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_property_detail_add_tenant"
-                    style="@style/ButtonText"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearlayout_property_detail_all"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/dividerTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/colorAccent" />
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_totaldistance_time_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="Add Tenant" />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:text="Total Distance"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:text="Duration"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_totaldistance_time_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tv_property_detail_total_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:text="Total Distance"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tv_property_detail_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:text="Duration"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/dividerBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/colorAccent" />
 
             </LinearLayout>
 
-        </ScrollView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
 
-    </com.google.android.material.card.MaterialCardView>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-</LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_property_detail_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Id"
+                            android:textSize="24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_property_detail_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price"
+                            android:textSize="24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_property_detail_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:textSize="24dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_property_detail_add_tenant"
+                            style="@style/ButtonText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="50dp"
+                            android:layout_marginBottom="24dp"
+                            android:text="Add Tenant" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

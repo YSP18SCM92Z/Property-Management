@@ -11,7 +11,7 @@ import retrofit2.Call
  * Created by N & T on 12/23/2019.
  * Under instructions of Varun, Manisha, Ansari, & Rahul
  */
-private const val GEOCODING_API_KEY = "AIzaSyD8MNG7RMklDq15lfOYzAI4iz4bKb-_TS4"
+private const val GOOGLE_API_KEY = "AIzaSyD8MNG7RMklDq15lfOYzAI4iz4bKb-_TS4"
 
 class Repository(application: Application) {
 
@@ -75,7 +75,22 @@ class Repository(application: Application) {
             .retrofitGeocodingService
             .getLatLngObjectAsync(
                 address = formattedAddress,
-                key = GEOCODING_API_KEY
+                key = GOOGLE_API_KEY
+            )
+    }
+
+    fun getDirection(
+        yourLatLngLocation: String,
+        destinationLatLngLocation: String,
+        mode: String) : Call<DirectionObject> {
+
+        return PropertyManagementAPI
+            .retrofitDirectionService
+            .getDirectionAsync(
+                origin = yourLatLngLocation,
+                destination = destinationLatLngLocation,
+                key = GOOGLE_API_KEY,
+                mode = mode
             )
     }
 
