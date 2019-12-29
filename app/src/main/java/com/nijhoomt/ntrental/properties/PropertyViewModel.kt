@@ -21,8 +21,7 @@ class PropertyViewModel(
     private val repository = Repository(application)
 
     private var _propertyList = MutableLiveData<List<Property>>()
-
-    val property: LiveData<List<Property>>
+    val propertyList: LiveData<List<Property>>
         get() = _propertyList
 
     init {

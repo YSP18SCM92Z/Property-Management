@@ -26,8 +26,8 @@ class PropertyTenantsViewModel(
         get() = _listOfTenantsOfChosenLandlord
 
     init {
-//        getListOfTenantsOfChosenLandlord(landlordId)
-        getListOfTenantsOfChosenLandlord("32")
+        getListOfTenantsOfChosenLandlord(landlordId)
+//        getListOfTenantsOfChosenLandlord("32")
     }
 
     private fun getListOfTenantsOfChosenLandlord(landlordId: String) {
