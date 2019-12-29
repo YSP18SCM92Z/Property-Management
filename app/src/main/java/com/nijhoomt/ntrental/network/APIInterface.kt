@@ -14,6 +14,7 @@ private const val FILE_NAME_FORGOT_YOUR_PASSWORD = "pro_mgt_forgot_pass.php"
 private const val FILE_NAME_ADD_PROPERTY = "pro_mgt_add_pro.php"
 private const val FILE_NAME_REMOVE_PROPERTY = "remove-property.php"
 private const val FILE_NAME_PROPERTY_TENANTS = "pro_mgt_tenent_details.php"
+private const val FILE_NAME_ADD_TENANTS_BY_PROPERTY = "pro_mgt_add_tenants.php"
 
 private const val GEOCODING_OUTPUT_FORMAT = "json"  // xml or json
 
@@ -84,5 +85,18 @@ interface APIInterface {
     fun getListOfTenantsOfChosenLandlordAsync(
         @Query("landlordid") landlordid: String
     ): Call<TenantObject>
+
+    @GET("$FILE_NAME_ADD_TENANTS_BY_PROPERTY")
+    fun addTenantsByLandlordAsync(
+        @Query("name") name: String,
+        @Query("email") email: String,
+        @Query("address") address: String,
+        @Query("mobile") mobile: String,
+        @Query("propertyid") propertyid: String,
+        @Query("landlordid") landlordid: String
+    ) : Call <String>
 }
+
+
+
 
