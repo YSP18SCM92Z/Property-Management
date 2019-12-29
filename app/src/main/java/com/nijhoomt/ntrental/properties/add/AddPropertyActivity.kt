@@ -29,6 +29,7 @@ class AddPropertyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_property)
 
         setUpToolbar()
+        btn_add_property_save.isEnabled = false
 
         btn_add_property_check.setOnClickListener {
 
@@ -47,61 +48,65 @@ class AddPropertyActivity : AppCompatActivity() {
             val address = tiet_add_property_address.text.toString()
             val city = tiet_add_property_city.text.toString()
             val state = tiet_add_property_state.text.toString()
+            val zipcode = tiet_add_property_zipcode.text.toString()
             val country = tiet_add_property_country.text.toString()
             val purchasePrice = tiet_add_property_purchase_price.text.toString()
 
-            // TODO validateUserInputs()
+            if (address == "" || city == "" || state == "" ||
+                zipcode == "" || country == "" || purchasePrice == ""
+            ) {
+                if (address == "") tiet_add_property_address.error = "Address field is required!"
+                if (city == "") tiet_add_property_city.error = "City field is required!"
+                if (state == "") tiet_add_property_state.error = "Password field is required!"
+                if (zipcode == "") tiet_add_property_zipcode.error = "Zipcode field is required!"
+                if (country == "") tiet_add_property_country.error = "Country field is required!"
+                if (purchasePrice == "") tiet_add_property_purchase_price.error =
+                    "Price field is required!"
 
-//            Construct Formatted Address so that we can send to Google API Geocoding for
-//            getting the precise latitude & longitude
-            val formattedString = constructFormattedAddress()
+            } else {
+
+//                Construct Formatted Address so that we can send to Google API Geocoding for
+//                getting the precise latitude & longitude
+                val formattedString = constructFormattedAddress()
+
+                val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+                val userId = myPref.getString("userId", "").toString()
+                val userType = myPref.getString("userType", "").toString()
 
 
-//        User Credentials after Login
-//        "propertyuserid": "3",
-//        "propertyusertype": "landlord",
+//                After Converting the address to LatLng using Reverse Geocoding
+//                While creating the ViewModel, we are also in the processing of gathering the correct LatLng
+//                For the specified address
+                initializeAddPropertyViewModel(formattedString)
 
-            val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
-            val userId = myPref.getString("userId", "").toString()
-            val userType = myPref.getString("userType", "").toString()
+                addPropertyViewModel.latLngObject.observe(this, Observer {
+                    lagLngObject = it
+                    Toast.makeText(
+                        this,
+                        "Latitude: ${lagLngObject.lat}, Longitude: ${lagLngObject.lng}",
+                        Toast.LENGTH_LONG
+                    ).show()
 
-
-//         After Converting the address to LatLng using Reverse Geocoding
-//         Latitude
-//         longitude
-//        "propertylatitude": "12.4565656",
-//        "propertylongitude": "3.5656565"
-
-//         While creating the ViewModel, we are also in the processing of gathering the correct LatLng
-//         For the specified address
-            initializeAddPropertyViewModel(formattedString)
-
-            addPropertyViewModel.latLngObject.observe(this, Observer {
-                lagLngObject = it
-                Toast.makeText(
-                    this,
-                    "Latitude: ${lagLngObject.lat}, Longitude: ${lagLngObject.lng}",
-                    Toast.LENGTH_LONG
-                ).show()
-
-                // Construct property instance with all the provided/found information
-                property = Property(
-                    // API server responsibility
-                    id = "",
-                    // User Inputs
-                    propertyaddress = address,
-                    propertycity = city,
-                    propertystate = state,
-                    propertycountry = country,
-                    propertypurchaseprice = purchasePrice,
-                    // Session Info
-                    propertyuserid = userId,
-                    propertyusertype = userType,
-                    // Geocoding
-                    propertylatitude = lagLngObject.lat.toString(),
-                    propertylongitude = lagLngObject.lng.toString()
-                )
-            })
+                    // Construct property instance with all the provided/found information
+                    property = Property(
+                        // API server responsibility
+                        id = "",
+                        // User Inputs
+                        propertyaddress = address,
+                        propertycity = city,
+                        propertystate = state,
+                        propertycountry = country,
+                        propertypurchaseprice = purchasePrice,
+                        // Session Info
+                        propertyuserid = userId,
+                        propertyusertype = userType,
+                        // Geocoding
+                        propertylatitude = lagLngObject.lat.toString(),
+                        propertylongitude = lagLngObject.lng.toString()
+                    )
+                })
+                btn_add_property_save.isEnabled = true
+            }
         }
 
         btn_add_property_save.setOnClickListener {
