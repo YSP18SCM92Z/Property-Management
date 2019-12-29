@@ -114,6 +114,7 @@ class Repository(application: Application) {
         return PropertyManagementAPI
             .retrofitService
             .getAllPropertiesForTenantsAsync()
+    }
 
     fun addTenantsByLandlord(addTenantCred: AddTenantCred): Call<String>{
         return PropertyManagementAPI
