@@ -1,6 +1,7 @@
 package com.nijhoomt.ntrental.properties.detail
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -62,7 +63,16 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
         btn_property_detail_add_tenant.setOnClickListener {
+
+            var myPref = getSharedPreferences("PropertyId", Context.MODE_PRIVATE)
+            var editor = myPref.edit()
+
+            editor.putString("PropertyId", chosenProperty.id)
+            editor.commit()
+
             startActivity(Intent(this, PropertyTenantsActivity::class.java))
+
+
         }
 
         // Integrate Google Maps into this activity

@@ -34,6 +34,11 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
+private val retrofitAddTenant = Retrofit.Builder()
+    .addConverterFactory(ScalarsConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
 // ===========================================================================
 // Unused but consider to
 //private val retrofitRxJavaRegister = Retrofit.Builder()
@@ -70,5 +75,9 @@ object PropertyManagementAPI {
     // Same (Can be reused for different calls as long as it returns "JSON" object)
     val retrofitService: APIInterface by lazy {
         retrofit.create(APIInterface::class.java)
+    }
+
+    val retrofitAddTenantService: APIInterface by lazy {
+        retrofitAddTenant.create(APIInterface::class.java)
     }
 }

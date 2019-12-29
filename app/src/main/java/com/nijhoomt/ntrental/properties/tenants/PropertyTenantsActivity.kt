@@ -11,8 +11,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.model.Property
+import com.nijhoomt.ntrental.model.PropertyObject
 import com.nijhoomt.ntrental.model.Tenant
 import com.nijhoomt.ntrental.more.MoreActivity
+import com.nijhoomt.ntrental.properties.tenants.add_tenant_by_landlord.AddTenantActivity
 import com.nijhoomt.ntrental.properties.tenants.detail.PropertyTenantsDetailActivity
 import kotlinx.android.synthetic.main.activity_property_tenants.*
 import kotlinx.android.synthetic.main.content_property_tenants.*
@@ -54,8 +57,12 @@ class PropertyTenantsActivity : AppCompatActivity() {
         })
 
         fab_property_tenants_add_tenant.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()*/
+
+            val intent = Intent(this, AddTenantActivity::class.java)
+
+            startActivity(intent)
         }
     }
 
