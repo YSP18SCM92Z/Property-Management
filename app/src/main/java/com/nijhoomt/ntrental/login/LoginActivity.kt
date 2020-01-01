@@ -3,6 +3,7 @@ package com.nijhoomt.ntrental.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,15 +12,27 @@ import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordActivity
 import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
 import com.nijhoomt.ntrental.userroles.tenant.TenantActivity
+import com.nijhoomt.ntrental.util.Util
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
-class LoginActivity : AppCompatActivity() {
+//class LoginActivity : AppCompatActivity() {
+class LoginActivity : DaggerAppCompatActivity() {
+
+    private val TAG = javaClass.simpleName
+
+    @Inject
+    lateinit var testString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         btn_login_login.setOnClickListener {
+
+            if (Util.DEBUG_MODE) Toast.makeText(this, "Testing injection: $testString", Toast.LENGTH_LONG).show()
+
             validateLoginCredential()
         }
         

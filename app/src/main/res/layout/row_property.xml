@@ -13,6 +13,13 @@
         android:orientation="vertical"
         android:padding="4dp">
 
+        <ImageView
+            android:id="@+id/iv_property_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/property014"/>
+
         <TextView
             android:id="@+id/tv_property_id"
             android:layout_width="match_parent"
