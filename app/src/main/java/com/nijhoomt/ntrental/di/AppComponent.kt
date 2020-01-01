@@ -50,9 +50,16 @@ import dagger.android.support.AndroidSupportInjectionModule
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
 
-    @Component.Builder
-    interface Builder {
-        fun application(@BindsInstance application: Application): Builder
-        fun build(): AppComponent
+//    1st way
+//    @Component.Builder
+//    interface Builder {
+//        fun application(@BindsInstance application: Application): Builder
+//        fun build(): AppComponent
+//    }
+
+//    2nd way
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance application: Application): AppComponent
     }
 }

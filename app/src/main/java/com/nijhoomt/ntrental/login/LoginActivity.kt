@@ -2,11 +2,13 @@ package com.nijhoomt.ntrental.login
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.RequestManager
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordActivity
 import com.nijhoomt.ntrental.model.LoginCredential
@@ -23,16 +25,17 @@ class LoginActivity : DaggerAppCompatActivity() {
     private val TAG = javaClass.simpleName
 
     @Inject
-    lateinit var testString: String
+    lateinit var logo: Drawable
+
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setLogo()
 
         btn_login_login.setOnClickListener {
-
-            if (Util.DEBUG_MODE) Toast.makeText(this, "Testing injection: $testString", Toast.LENGTH_LONG).show()
-
             validateLoginCredential()
         }
         
@@ -40,6 +43,12 @@ class LoginActivity : DaggerAppCompatActivity() {
             val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun setLogo(){
+        requestManager
+            .load(logo)
+            .into(iv_login_logo)
     }
 
     private fun validateLoginCredential() {

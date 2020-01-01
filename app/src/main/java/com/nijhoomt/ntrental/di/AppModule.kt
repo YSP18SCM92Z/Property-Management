@@ -1,5 +1,10 @@
 package com.nijhoomt.ntrental.di
 
+import android.app.Application
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.nijhoomt.ntrental.R
 import dagger.Module
 import dagger.Provides
 
@@ -17,6 +22,19 @@ abstract class AppModule {
 
         @JvmStatic
         @Provides
-        fun provideSomeString() = "This is a test String"
+        fun provideRequestOptions() = RequestOptions
+            .placeholderOf(R.drawable.logo)
+            .error(R.drawable.logo)
+
+        @JvmStatic
+        @Provides
+        fun provideGlideInstance(application: Application, requestOptions: RequestOptions) =
+            Glide.with(application)
+                .setDefaultRequestOptions(requestOptions)
+
+        @JvmStatic
+        @Provides
+        fun provideAppLogoDrawable(application: Application) =
+            ContextCompat.getDrawable(application, R.drawable.logo)!!
     }
 }
