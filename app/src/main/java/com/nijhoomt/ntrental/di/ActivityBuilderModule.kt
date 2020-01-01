@@ -1,5 +1,6 @@
 package com.nijhoomt.ntrental.di
 
+import com.nijhoomt.ntrental.di.viewmodels.auth.LoginViewModelsModule
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordActivity
 import com.nijhoomt.ntrental.login.LoginActivity
 import com.nijhoomt.ntrental.login_register.LoginRegisterActivity
@@ -21,7 +22,7 @@ abstract class ActivityBuilderModule {
     @ContributesAndroidInjector
     abstract fun contributeRegisterActivity(): RegisterActivity
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [LoginViewModelsModule::class])
     abstract fun contributeLoginActivity(): LoginActivity
 
     @ContributesAndroidInjector

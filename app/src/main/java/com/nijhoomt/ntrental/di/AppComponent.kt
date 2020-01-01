@@ -2,6 +2,7 @@ package com.nijhoomt.ntrental.di
 
 import android.app.Application
 import com.nijhoomt.ntrental.BaseApplication
+import com.nijhoomt.ntrental.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjection
@@ -9,6 +10,7 @@ import dagger.android.AndroidInjector
 import dagger.android.ContributesAndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 /**
  * "@Component"
@@ -43,10 +45,13 @@ import dagger.android.support.AndroidSupportInjectionModule
  * @see ContributesAndroidInjector
  */
 
+// This component will be scoped to an application-wide level
+@Singleton
 @Component(
     modules = [AndroidSupportInjectionModule::class,
         ActivityBuilderModule::class,
-        AppModule::class]
+        AppModule::class,
+        ViewModelFactoryModule::class]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
 

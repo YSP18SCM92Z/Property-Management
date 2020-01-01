@@ -44,12 +44,12 @@ class Repository(application: Application) {
             )
     }
 
-    fun signUserIn(loginCredential: LoginCredential): Call<LoginObject> {
+    fun signUserIn(email: String, password: String): Call<LoginObject> {
         return PropertyManagementAPI
             .retrofitLoginService
             .postUserAsync(
-                password = loginCredential.password,
-                email = loginCredential.email
+                password = password,
+                email = email
             )
     }
 

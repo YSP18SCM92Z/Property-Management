@@ -4,17 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.RequestManager
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.di.viewmodels.ViewModelProvidersFactory
 import com.nijhoomt.ntrental.forgotpassword.ForgotPasswordActivity
-import com.nijhoomt.ntrental.model.LoginCredential
 import com.nijhoomt.ntrental.userroles.landlord.LandlordActivity
 import com.nijhoomt.ntrental.userroles.tenant.TenantActivity
-import com.nijhoomt.ntrental.util.Util
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
@@ -23,12 +20,16 @@ import javax.inject.Inject
 class LoginActivity : DaggerAppCompatActivity() {
 
     private val TAG = javaClass.simpleName
+    private lateinit var loginViewModel: LoginViewModel
 
     @Inject
     lateinit var logo: Drawable
 
     @Inject
     lateinit var requestManager: RequestManager
+
+    @Inject
+    lateinit var providerFactory: ViewModelProvidersFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,10 +72,12 @@ class LoginActivity : DaggerAppCompatActivity() {
 
         val email = edit_text_email_login.text.toString()
         val password = edit_text_password_login.text.toString()
-        val loginCredential = LoginCredential(email, password)
 
-        val loginViewModel =
-            initializeLoginViewModel(loginCredential)
+        loginViewModel = ViewModelProviders
+            .of(this, providerFactory)
+            .get(LoginViewModel::class.java)
+
+        loginViewModel.initiateLogin(email, password)
 
         loginViewModel.loginObject.observe(this, Observer {
 
@@ -102,14 +105,18 @@ class LoginActivity : DaggerAppCompatActivity() {
         })
     }
 
-    private fun initializeLoginViewModel(loginCredential: LoginCredential): LoginViewModel {
-        val loginViewModelFactory = LoginViewModelFactory(
-            loginCredential = loginCredential,
-            application = application
-        )
-
-        return ViewModelProviders
-            .of(this, loginViewModelFactory)
-            .get(LoginViewModel::class.java)
-    }
+//    private fun initializeLoginViewModel(loginCredential: LoginCredential): LoginViewModel {
+////        val loginViewModelFactory = LoginViewModelFactory(
+////            loginCredential = loginCredential,
+////            application = application
+////        )
+//
+////        return ViewModelProviders
+////            .of(this, loginViewModelFactory)
+////            .get(LoginViewModel::class.java)
+//
+//        return ViewModelProviders
+//            .of(this, providerFactory)
+//            .get(LoginViewModel::class.java)
+//    }
 }
