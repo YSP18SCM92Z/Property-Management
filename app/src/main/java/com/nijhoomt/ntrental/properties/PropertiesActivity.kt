@@ -47,6 +47,8 @@ class PropertiesActivity : AppCompatActivity() {
             propertiesListAdapter.submitList(it.sortedByDescending { it.id })
         })
 
+        propertyViewModel.setUserId(userCred)
+
         propertiesListAdapter.setOnItemClickListener(object: PropertiesListAdapter.OnItemClickListener{
             override fun onItemClick(property: Property) {
                 val intent = Intent(applicationContext, PropertyDetailActivity::class.java)

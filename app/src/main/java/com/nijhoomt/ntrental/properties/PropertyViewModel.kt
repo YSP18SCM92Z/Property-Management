@@ -1,17 +1,13 @@
 package com.nijhoomt.ntrental.properties
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.Property
-import com.nijhoomt.ntrental.model.PropertyObject
 import com.nijhoomt.ntrental.model.UserId
 import com.nijhoomt.ntrental.repository.Repository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class PropertyViewModel(
     userId: UserId,
@@ -20,15 +16,40 @@ class PropertyViewModel(
 
     private val repository = Repository(application)
 
-    private var _propertyList = MutableLiveData<List<Property>>()
-    val propertyList: LiveData<List<Property>>
-        get() = _propertyList
+    private val _userId = MutableLiveData<UserId>()
 
-    init {
-        getPropertyList(userId)
+    val propertyList: LiveData<List<Property>> = Transformations.switchMap(_userId){
+        repository.getPropertyList(it)
     }
 
-    private fun getPropertyList(userId: UserId) {
+    fun setUserId(userId: UserId){
+        val updated_user = userId
+
+        if(_userId.value == updated_user){
+
+            return
+        }
+
+        _userId.value = updated_user
+
+    }
+
+    fun cancelJobs(){
+
+        repository.cancelJob()
+    }
+
+
+
+
+
+
+    /*init {
+        getPropertyList(userId)
+    }*/
+
+
+    /*private fun getPropertyList(userId: UserId) {
         val call = repository.getPropertyList(userId)
 
         call.enqueue(object : Callback<PropertyObject> {
@@ -43,6 +64,6 @@ class PropertyViewModel(
                 _propertyList.value = response.body()?.Property
             }
         })
-    }
+    }*/
 
 }

@@ -47,10 +47,10 @@ interface APIInterface {
 //    ) : Single<String>
 
     @GET("$FILE_NAME_PROPERTY_LIST")
-    fun getPropertyListAsync(
+    suspend fun getPropertyListAsync(
         @Query("userid") userid: String,
         @Query("usertype") usertype: String
-    ): Call<PropertyObject>
+    ): PropertyObject
 
     @GET("$FILE_NAME_FORGOT_YOUR_PASSWORD")
     fun getForgottenPasswordAsync(
