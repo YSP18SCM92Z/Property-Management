@@ -1,6 +1,7 @@
 package com.nijhoomt.ntrental.properties.tenants.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -39,8 +40,13 @@ class PropertyTenantsDetailActivity : AppCompatActivity() {
 
         // TODO Make a call feature using System Call App
         fab_property_tenants_detail_call_tenant.setOnClickListener { view ->
-            Snackbar.make(view, "Calling ${chosenTenant.tenantName} ... Be patient!", Snackbar.LENGTH_LONG)
+
+            Snackbar.make(view, "Calling ${chosenTenant.tenantName} ...", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+
+            val callIntent = Intent(Intent.ACTION_DIAL)
+            callIntent.data = (Uri.parse("tel: +1 ${parseMobile(chosenTenant.tenantMobile)}" ))
+            startActivity(callIntent)
         }
     }
 

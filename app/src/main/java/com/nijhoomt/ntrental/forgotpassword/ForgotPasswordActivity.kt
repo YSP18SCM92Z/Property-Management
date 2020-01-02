@@ -20,8 +20,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
             validateForgottenEmail()
         }
 
-        // TODO navigate back to Login
-        // TODO pre-filled user email/password after navigating
         btn_login_forgotpassword.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("EMAIL_AFTER_RESET", text_view_retrieved_email.text)
