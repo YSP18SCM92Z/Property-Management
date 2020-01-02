@@ -61,11 +61,11 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (locationList.isNotEmpty()) {
                     // The last location in the list is the newest
                     val location = locationList.last()
-                    Toast.makeText(
-                        applicationContext,
-                        "Latitude: ${location.latitude} | Longitude: ${location.longitude}",
-                        Toast.LENGTH_LONG
-                    ).show()
+//                    Toast.makeText(
+//                        applicationContext,
+//                        "Latitude: ${location.latitude} | Longitude: ${location.longitude}",
+//                        Toast.LENGTH_LONG
+//                    ).show()
                     mLastLocation = location
                     if (mCurLocationMarker != null) {
                         mCurLocationMarker!!.remove()

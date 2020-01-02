@@ -9,6 +9,7 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
 import kotlinx.android.synthetic.main.row_property.view.*
@@ -70,8 +71,6 @@ class PropertiesListAdapter(
 
                 tv_property_id.text = "Id: ${curProperty.id}"
                 tv_property_address.text = "Address: ${curProperty.propertyaddress}, ${curProperty.propertycity}, ${curProperty.propertystate} ${curProperty.propertycountry}"
-                val imageResourceId = generateImageResourceId()
-                iv_property_image.setImageResource(imageResourceId)
                 if (curProperty.propertypurchaseprice.isNotEmpty()) {
                     tv_property_purchaseprice.text =
                         "Purchase Price: $%,.2f".format(curProperty.propertypurchaseprice.toDouble())
@@ -79,6 +78,12 @@ class PropertiesListAdapter(
                 else {
                     tv_property_purchaseprice.text = "Purchase Price: N/A"
                 }
+
+                val imageResourceId = generateImageResourceId()
+                Glide.with(this)
+                    .load(imageResourceId)
+                    .centerCrop()
+                    .into(iv_property_image)
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {
@@ -90,8 +95,7 @@ class PropertiesListAdapter(
 
         private fun generateImageResourceId(): Int {
             val randomNumber = SecureRandom()
-            val bound = randomNumber.nextInt(14) + 1
-            return when (bound) {
+            return when (randomNumber.nextInt(14) + 1) {
                 1 -> R.drawable.property001
                 2 -> R.drawable.property002
                 3 -> R.drawable.property003

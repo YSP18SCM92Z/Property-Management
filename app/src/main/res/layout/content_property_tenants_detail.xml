@@ -20,7 +20,7 @@
         app:cardCornerRadius="8dp">
 
         <ImageView
-            android:id="@+id/iv_property_tenant_detail"
+            android:id="@+id/iv_property_tenant_detail_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/tenant_001" />

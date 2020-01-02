@@ -7,36 +7,57 @@
     android:elevation="10dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:orientation="vertical"
         android:padding="4dp">
 
-        <ImageView
-            android:id="@+id/iv_property_image"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/property014"/>
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_property_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property ID" />
+            <ImageView
+                android:id="@+id/iv_property_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/property014" />
 
-        <TextView
-            android:id="@+id/tv_property_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property Address" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#DDFFFFFF"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-        <TextView
-            android:id="@+id/tv_property_purchaseprice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property Purchase Price" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_property_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Property ID"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_property_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Property Address"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_property_purchaseprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Property Purchase Price"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

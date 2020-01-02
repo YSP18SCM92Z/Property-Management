@@ -1,10 +1,12 @@
 package com.nijhoomt.ntrental.forgotpassword
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
+import com.nijhoomt.ntrental.login.LoginActivity
 import com.nijhoomt.ntrental.model.ForgotPasswordCred
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 
@@ -19,8 +21,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
         }
 
         // TODO navigate back to Login
-
         // TODO pre-filled user email/password after navigating
+        btn_login_forgotpassword.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("EMAIL_AFTER_RESET", text_view_retrieved_email.text)
+            intent.putExtra("PASSWORD_AFTER_RESET", text_view_retrieved_password.text)
+            startActivity(intent)
+        }
+
     }
 
     private fun validateForgottenEmail() {

@@ -16,7 +16,6 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
-//class LoginActivity : AppCompatActivity() {
 class LoginActivity : DaggerAppCompatActivity() {
 
     private val TAG = javaClass.simpleName
@@ -36,6 +35,13 @@ class LoginActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_login)
         setLogo()
 
+        val emailAfterReset = intent.getStringExtra("EMAIL_AFTER_RESET")
+        val passwordAfterReset = intent.getStringExtra("PASSWORD_AFTER_RESET")
+        if (emailAfterReset != null || passwordAfterReset != null){
+            edit_text_email_login.setText(emailAfterReset)
+            edit_text_password_login.setText(passwordAfterReset)
+        }
+
         btn_login_login.setOnClickListener {
             validateLoginCredential()
         }
@@ -46,20 +52,11 @@ class LoginActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun setLogo(){
-        requestManager
-            .load(logo)
-            .into(iv_login_logo)
-    }
-
     private fun validateLoginCredential() {
-
         if (edit_text_email_login.text.toString() == "" || edit_text_password_login.text.toString() == "") {
-
             if (edit_text_email_login.text.toString() == "") {
                 edit_text_email_login.error = "Email field is required"
             }
-
             if (edit_text_password_login.text.toString() == "") {
                 edit_text_password_login.error = "Password field is required"
             }
@@ -73,6 +70,8 @@ class LoginActivity : DaggerAppCompatActivity() {
         val email = edit_text_email_login.text.toString()
         val password = edit_text_password_login.text.toString()
 
+        // Dagger will inject ViewModelProvidersFactory into providerFactory @Runtime
+        // & make it available so that we can pass it in here to initilize loginViewModel
         loginViewModel = ViewModelProviders
             .of(this, providerFactory)
             .get(LoginViewModel::class.java)
@@ -105,18 +104,9 @@ class LoginActivity : DaggerAppCompatActivity() {
         })
     }
 
-//    private fun initializeLoginViewModel(loginCredential: LoginCredential): LoginViewModel {
-////        val loginViewModelFactory = LoginViewModelFactory(
-////            loginCredential = loginCredential,
-////            application = application
-////        )
-//
-////        return ViewModelProviders
-////            .of(this, loginViewModelFactory)
-////            .get(LoginViewModel::class.java)
-//
-//        return ViewModelProviders
-//            .of(this, providerFactory)
-//            .get(LoginViewModel::class.java)
-//    }
+    private fun setLogo() {
+        requestManager
+            .load(logo)
+            .into(iv_login_logo)
+    }
 }

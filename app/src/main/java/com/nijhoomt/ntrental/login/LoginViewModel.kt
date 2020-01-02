@@ -44,6 +44,11 @@ class LoginViewModel @Inject constructor(
 
             override fun onResponse(call: Call<LoginObject>, response: Response<LoginObject>) {
                 _loginObject.value = response.body()
+                Toast.makeText(
+                    application,
+                    "Login Success!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }

@@ -23,13 +23,15 @@ abstract class AppModule {
     @Module
     companion object AppModule {
 
-        @JvmStatic
-        @Singleton
-        @Provides
-        fun provideRetrofitInstance() = Retrofit.Builder()
-            .baseUrl("")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+//        APIService & APIInteface did a great job on separating of concerns already ...
+//        No need to put them here ...
+//        @JvmStatic
+//        @Singleton
+//        @Provides
+//        fun provideRetrofitInstance() = Retrofit.Builder()
+//            .baseUrl("...")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
 
         @JvmStatic
         @Singleton
