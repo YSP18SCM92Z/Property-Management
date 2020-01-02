@@ -4,10 +4,12 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
 
 
 private const val BASE_URL = "http://rjtmobile.com/aamir/property-mgmt/"
 private const val GEOCODING_BASE_URL = "https://maps.googleapis.com/maps/api/geocode/"
+private const val DIRECTION_BASE_URL = "https://maps.googleapis.com/maps/api/directions/"
 
 private val gson = GsonBuilder()
     .setLenient()
@@ -26,6 +28,11 @@ private val retrofitLogin = Retrofit.Builder()
 private val retrofitGeocoding = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(GEOCODING_BASE_URL)
+    .build()
+
+private val retrofitDirection = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(DIRECTION_BASE_URL)
     .build()
 
 // Same (Can be reused for different calls as long as it returns "JSON" object)
@@ -70,6 +77,11 @@ object PropertyManagementAPI {
     // Geocoding
     val retrofitGeocodingService: APIInterface by lazy {
         retrofitGeocoding.create(APIInterface::class.java)
+    }
+
+    // Direction
+    val retrofitDirectionService: APIInterface by lazy {
+        retrofitDirection.create(APIInterface::class.java)
     }
 
     // Same (Can be reused for different calls as long as it returns "JSON" object)
