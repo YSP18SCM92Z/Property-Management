@@ -39,11 +39,11 @@ class PropertyTenantsViewModel(
                     "PropertyTenantsVM",
                     "Failed to get a list of tenants for this chosen landlord: ${t.message}"
                 )
-                Toast.makeText(
-                    application,
-                    "PropertyTenantsVM: Failed to get a list of tenants for this chosen landlord: ${t.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+//                Toast.makeText(
+//                    application,
+//                    "PropertyTenantsVM: Failed to get a list of tenants for this chosen landlord: ${t.message}",
+//                    Toast.LENGTH_LONG
+//                ).show()
             }
 
             override fun onResponse(

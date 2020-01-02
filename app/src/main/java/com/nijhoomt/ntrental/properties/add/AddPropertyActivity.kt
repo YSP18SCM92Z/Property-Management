@@ -81,11 +81,11 @@ class AddPropertyActivity : AppCompatActivity() {
 
                 addPropertyViewModel.latLngObject.observe(this, Observer {
                     lagLngObject = it
-                    Toast.makeText(
-                        this,
-                        "Latitude: ${lagLngObject.lat}, Longitude: ${lagLngObject.lng}",
-                        Toast.LENGTH_LONG
-                    ).show()
+//                    Toast.makeText(
+//                        this,
+//                        "Latitude: ${lagLngObject.lat}, Longitude: ${lagLngObject.lng}",
+//                        Toast.LENGTH_LONG
+//                    ).show()
 
                     // Construct property instance with all the provided/found information
                     property = Property(

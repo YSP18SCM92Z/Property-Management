@@ -141,7 +141,7 @@ class PlaceholderFragment : Fragment() {
                 }
 
         pageViewModel.responseMessage.observe(this, Observer {
-            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
             val intent = Intent(view.context, LoginActivity::class.java)
             startActivity(intent)
         })
@@ -177,7 +177,7 @@ class PlaceholderFragment : Fragment() {
                 }
 
         pageViewModel.responseMessage.observe(this, Observer {
-            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this.activity, "$it", Toast.LENGTH_LONG).show()
             val intent = Intent(view.context, LoginActivity::class.java)
             startActivity(intent)
         })
