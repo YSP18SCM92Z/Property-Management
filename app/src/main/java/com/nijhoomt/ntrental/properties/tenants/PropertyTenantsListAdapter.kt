@@ -81,13 +81,15 @@ class PropertyTenantsListAdapter(
             }
         }
 
-        private fun getImageResourceId(tenantName: String): Int = with(tenantName) {
+        private fun getImageResourceId(tenantName: String): Int = with(tenantName.toLowerCase()) {
             when {
-                contains("Varun") -> R.drawable.varun_gupta
-                contains("Manisha") -> R.drawable.manisha_prasad
-                contains("Ansari") -> R.drawable.ansari
-                contains("Rahul") -> R.drawable.rahul_khurana
-                contains("Trump") -> R.drawable.donald_trump
+                contains("varun") -> R.drawable.varun_gupta
+                contains("manisha") -> R.drawable.manisha_prasad
+                contains("ansari") -> R.drawable.ansari
+                contains("rahul") -> R.drawable.rahul_khurana
+                contains("trump") -> R.drawable.donald_trump
+                contains("navneet") -> R.drawable.navneet_singh
+                contains("singh") -> R.drawable.navneet_singh
                 else -> R.drawable.unknown_person
             }
         }
