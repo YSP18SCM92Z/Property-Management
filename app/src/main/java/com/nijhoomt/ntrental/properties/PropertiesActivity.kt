@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
@@ -11,13 +12,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
+import com.nijhoomt.ntrental.model.PropertyObject
 import com.nijhoomt.ntrental.model.UserId
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.properties.add.AddPropertyActivity
 import com.nijhoomt.ntrental.properties.detail.PropertyDetailActivity
+import io.reactivex.Observable
+import io.reactivex.ObservableSource
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Function
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_properties.*
+import java.util.concurrent.TimeUnit
 
 class PropertiesActivity : AppCompatActivity() {
+
+    val disposable = CompositeDisposable()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +64,37 @@ class PropertiesActivity : AppCompatActivity() {
 
         propertiesListAdapter.setOnItemClickListener(object: PropertiesListAdapter.OnItemClickListener{
             override fun onItemClick(property: Property) {
-                val intent = Intent(applicationContext, PropertyDetailActivity::class.java)
+
+                Observable.just(property).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .switchMap(object: Function<Property, ObservableSource<Property>>{
+                        override fun apply(t: Property): ObservableSource<Property> {
+                            return Observable.just(t).delay(1, TimeUnit.MILLISECONDS)
+                        }
+
+                    }).subscribe(object: io.reactivex.Observer<Property>{
+                        override fun onComplete() {
+                            Log.d("nijhoom", "Completed")
+                        }
+
+                        override fun onSubscribe(d: Disposable) {
+                            Log.d("nijhoom", "OnSubscribe")
+                        }
+
+                        override fun onNext(t: Property) {
+                            val intent = Intent(applicationContext, PropertyDetailActivity::class.java)
+                            intent.putExtra("SELECTED_PROPERTY", property)
+                            startActivity(intent)
+                        }
+
+                        override fun onError(e: Throwable) {
+
+                        }
+
+                    })
+                /*val intent = Intent(applicationContext, PropertyDetailActivity::class.java)
                 intent.putExtra("SELECTED_PROPERTY", property)
-                startActivity(intent)
+                startActivity(intent)*/
             }
         })
 
