@@ -7,29 +7,57 @@
     android:elevation="10dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:orientation="vertical"
         android:padding="4dp">
 
-        <TextView
-            android:id="@+id/tv_property_id"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property ID" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_property_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property Address" />
+            <ImageView
+                android:id="@+id/iv_property_tenant_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/donald_trump" />
 
-        <TextView
-            android:id="@+id/tv_property_purchaseprice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Property Purchase Price" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#DDFFFFFF"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tv_property_tenant_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_property_tenant_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_property_tenant_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

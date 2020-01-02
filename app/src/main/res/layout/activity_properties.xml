@@ -21,7 +21,7 @@
         android:id="@+id/properties_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/properties_001"
+        android:background="@drawable/property001"
         android:theme="@style/AppTheme.AppBarOverlay">
         <!--        android:stateListAnimator="@drawable/appbar_always_elevated"-->
 

@@ -9,9 +9,10 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Tenant
-import kotlinx.android.synthetic.main.row_property.view.*
+import kotlinx.android.synthetic.main.row_property_tenants.view.*
 
 /**
  * Created by N & T on 12/25/2019.
@@ -62,8 +63,15 @@ class PropertyTenantsListAdapter(
         ) {
             itemView.apply {
 
-                tv_property_id.text = "Id: ${curTenant.id}"
-                tv_property_address.text = "Address: ${curTenant.tenantAddress}"
+                tv_property_tenant_name.text = "Name: ${curTenant.tenantName}"
+                tv_property_tenant_email.text = "Email: ${parseEmail(curTenant.tenantEmail)}"
+                tv_property_tenant_mobile.text = "Mobile: ${parseMobile(curTenant.tenantMobile)}"
+
+                val imageResourceId = getImageResourceId(curTenant.tenantName)
+                Glide.with(this)
+                    .load(imageResourceId)
+                    .centerCrop()
+                    .into(iv_property_tenant_image)
 
                 setOnClickListener {
                     if (listener != null && position != RecyclerView.NO_POSITION) {
@@ -71,6 +79,42 @@ class PropertyTenantsListAdapter(
                     }
                 }
             }
+        }
+
+        private fun getImageResourceId(tenantName: String): Int = with(tenantName) {
+            when {
+                contains("Varun") -> R.drawable.varun_gupta
+                contains("Manisha") -> R.drawable.manisha_prasad
+                contains("Ansari") -> R.drawable.ansari
+                contains("Rahul") -> R.drawable.rahul_khurana
+                contains("Trump") -> R.drawable.donald_trump
+                else -> R.drawable.unknown_person
+            }
+        }
+
+        private fun parseMobile(tenantMobile: String): CharSequence? {
+            if (tenantMobile.length != 10) return "N/A"
+            else {
+                val mobileCharArr = tenantMobile.toCharArray()
+                val stringBuilder = StringBuilder()
+                stringBuilder.append('(')
+                stringBuilder.append(mobileCharArr[0], mobileCharArr[1], mobileCharArr[2])
+                stringBuilder.append(") ")
+                stringBuilder.append(mobileCharArr[3], mobileCharArr[4], mobileCharArr[5])
+                stringBuilder.append("-")
+                stringBuilder.append(
+                    mobileCharArr[6],
+                    mobileCharArr[7],
+                    mobileCharArr[8],
+                    mobileCharArr[9]
+                )
+                return stringBuilder.toString()
+            }
+        }
+
+        private fun parseEmail(tenantEmail: String): CharSequence? {
+            val isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(tenantEmail).matches()
+            return if (isEmailValid) tenantEmail else "N/A"
         }
     }
 
