@@ -1,10 +1,14 @@
 package com.nijhoomt.ntrental.repository
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import com.nijhoomt.ntrental.model.ForgotPasswordCred
 import com.nijhoomt.ntrental.model.ForgotPasswordObject
 import com.nijhoomt.ntrental.model.*
 import com.nijhoomt.ntrental.network.PropertyManagementAPI
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import retrofit2.Call
 
 /**
@@ -15,7 +19,7 @@ private const val GOOGLE_API_KEY = "AIzaSyD8MNG7RMklDq15lfOYzAI4iz4bKb-_TS4"
 
 class Repository(application: Application) {
 
-
+    lateinit var job: CompletableJob
 // Local/Database Data Sources
 
 //    private var cartDao: CartDAO
@@ -53,13 +57,43 @@ class Repository(application: Application) {
             )
     }
 
-    fun getPropertyList(userId: UserId): Call<PropertyObject>{
-        return PropertyManagementAPI
+    fun getPropertyList(userId: UserId): LiveData<List<Property>>{
+
+        job = Job()
+
+        return object: LiveData<List<Property>>() {
+
+            override fun onActive() {
+                super.onActive()
+
+                job.let {
+                    CoroutineScope(IO + job).launch {
+
+                        val propertyList =
+                            PropertyManagementAPI.retrofitService.getPropertyListAsync(
+                                userid = userId.userid,
+                                usertype = userId.usertype
+                            )
+
+                        withContext(Main) {
+
+                            value = propertyList.Property
+
+                            it.complete()
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        /*return PropertyManagementAPI
             .retrofitService
             .getPropertyListAsync(
                 userid = userId.userid,
                 usertype = userId.usertype
-            )
+            )*/
     }
 
     fun getForgottenPassword(forgotPasswordCred: ForgotPasswordCred): Call<ForgotPasswordObject> {
@@ -143,5 +177,10 @@ class Repository(application: Application) {
                 landlordid = addTenantCred.landlordid
 
             )
+    }
+
+    fun cancelJob(){
+
+        job?.cancel()
     }
 }

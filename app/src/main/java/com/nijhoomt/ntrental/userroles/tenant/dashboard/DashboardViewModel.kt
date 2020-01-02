@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.model.PropertyObject
-import com.nijhoomt.ntrental.model.UserId
 import com.nijhoomt.ntrental.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback

@@ -5,14 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nijhoomt.ntrental.R
-import com.nijhoomt.ntrental.model.Property
-import com.nijhoomt.ntrental.model.PropertyObject
 import com.nijhoomt.ntrental.model.Tenant
 import com.nijhoomt.ntrental.more.MoreActivity
 import com.nijhoomt.ntrental.properties.tenants.add_tenant_by_landlord.AddTenantActivity
