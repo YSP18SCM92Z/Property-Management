@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.*
 import com.nijhoomt.ntrental.R
 import com.nijhoomt.ntrental.model.Property
 import com.nijhoomt.ntrental.properties.tenants.PropertyTenantsActivity
+import com.nijhoomt.ntrental.userroles.tenant.ContactTenantActivity
 import kotlinx.android.synthetic.main.activity_property_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -134,12 +135,32 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 //
 //        }
 
+        val myPrefUserCred = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+        val userType = myPrefUserCred.getString("userType", "")
+
+        if(userType?.toLowerCase().equals("tenant")){
+            btn_property_detail_add_tenant.setText("Contact Landlord")
+        }
+        else{
+            btn_property_detail_add_tenant.setText("Add Tenant")
+        }
+
         btn_property_detail_add_tenant.setOnClickListener {
-            val myPref = getSharedPreferences("PropertyId", Context.MODE_PRIVATE)
-            val editor = myPref.edit()
-            editor.putString("PropertyId", chosenProperty.id)
-            editor.apply()
-            startActivity(Intent(this, PropertyTenantsActivity::class.java))
+
+            if(userType?.toLowerCase().equals("tenant")){
+
+                val intent = Intent(this, ContactTenantActivity::class.java)
+                startActivity(intent)
+
+        }
+            else{
+
+                val myPref = getSharedPreferences("PropertyId", Context.MODE_PRIVATE)
+                val editor = myPref.edit()
+                editor.putString("PropertyId", chosenProperty.id)
+                editor.apply()
+                startActivity(Intent(this, PropertyTenantsActivity::class.java))
+            }
         }
 
         fab_property_detail_direction.setOnClickListener {
@@ -247,7 +268,18 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.delete_menu, menu)
+
+        val myPrefUserCred = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+        val userType = myPrefUserCred.getString("userType", "")
+
+        if(userType?.toLowerCase().equals("tenant")){
+
+            menuInflater.inflate(R.menu.actionbar_without_delete, menu)
+        } else {
+
+            menuInflater.inflate(R.menu.delete_menu, menu)
+        }
+
         return super.onCreateOptionsMenu(menu)
     }
 
