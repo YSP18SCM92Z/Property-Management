@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".userroles.tenant.ContactTenantActivity"></activity>
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.
          (See the file "res/values/google_maps_api.xml").
@@ -33,11 +33,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".properties.tenants.add_tenant_by_landlord.AddTenantActivity"></activity>
+        <activity android:name=".properties.tenants.add_tenant_by_landlord.AddTenantActivity" />
         <activity
             android:name=".properties.tenants.detail.PropertyTenantsDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".properties.tenants.PropertyTenantsActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -48,20 +47,21 @@
             <!-- </intent-filter> -->
 
         </activity>
-
         <activity android:name=".properties.add.AddPropertyActivity" />
         <activity android:name=".forgotpassword.ForgotPasswordActivity" />
         <activity android:name=".properties.detail.PropertyDetailActivity">
+
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".properties.PropertiesActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login_register.LoginRegisterActivity" />
@@ -70,10 +70,12 @@
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".userroles.landlord.LandlordActivity">
+
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->

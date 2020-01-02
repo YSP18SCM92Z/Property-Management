@@ -36,11 +36,11 @@ class ForgotPasswordViewModel(
         call.enqueue(object: Callback<ForgotPasswordObject>{
             override fun onFailure(call: Call<ForgotPasswordObject>, t: Throwable) {
                 Log.e("ForgotPasswordVM", "Failed to get forgotten password: ${t.message}")
-                Toast.makeText(
-                    application,
-                    "ForgotPasswordVM: Failed to login: ${t.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+//                Toast.makeText(
+//                    application,
+//                    "ForgotPasswordVM: Failed to login: ${t.message}",
+//                    Toast.LENGTH_LONG
+//                ).show()
             }
 
             override fun onResponse(

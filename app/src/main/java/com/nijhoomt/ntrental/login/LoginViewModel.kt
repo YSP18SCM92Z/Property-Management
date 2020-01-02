@@ -35,11 +35,11 @@ class LoginViewModel @Inject constructor(
         call.enqueue(object : Callback<LoginObject>{
             override fun onFailure(call: Call<LoginObject>, t: Throwable) {
                 Log.e("LoginVM", "Failed to login: ${t.message}")
-                Toast.makeText(
-                    application,
-                    "LoginVM: Failed to login: ${t.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+//                Toast.makeText(
+//                    application,
+//                    "LoginVM: Failed to login: ${t.message}",
+//                    Toast.LENGTH_LONG
+//                ).show()
             }
 
             override fun onResponse(call: Call<LoginObject>, response: Response<LoginObject>) {

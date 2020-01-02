@@ -40,10 +40,10 @@ class TenantActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val loginCredential = intent.getSerializableExtra("LoginObject") as LoginObject
-        Toast.makeText(this, """
-            ${loginCredential.userEmail}
-        """.trimIndent(), Toast.LENGTH_LONG).show()
+        val loginCredential = intent.getSerializableExtra("LoginObject") as LoginObject?
+//        Toast.makeText(this, """
+//            ${loginCredential?.userEmail}
+//        """.trimIndent(), Toast.LENGTH_LONG).show()
 
     }
 

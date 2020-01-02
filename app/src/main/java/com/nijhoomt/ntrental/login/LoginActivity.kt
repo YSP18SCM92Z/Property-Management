@@ -90,14 +90,21 @@ class LoginActivity : DaggerAppCompatActivity() {
                     val editor = myPref.edit()
                     editor.putString("userId", it.userId)
                     editor.putString("userType", it.userType)
-
                     editor.apply()
                 }
-                "Property M" -> {}
+                "Property M" -> {
+
+                }
                 "Tenant" -> {
+
                     val intent = Intent(this, TenantActivity::class.java)
                     intent.putExtra("LoginObject", it)
                     startActivity(intent)
+
+                    val myPref = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+                    val editor = myPref.edit()
+                    editor.putString("userType", it.userType)
+                    editor.apply()
                 }
                 "Vendor" ->{}
             }
