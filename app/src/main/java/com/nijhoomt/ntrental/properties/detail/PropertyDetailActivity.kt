@@ -123,6 +123,17 @@ class PropertyDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
+
+//        // TODO if usertype is "Tenant" hide btn_property_detail_add_tenant button
+//        val myPrefUserCred = getSharedPreferences("UserCred", Context.MODE_PRIVATE)
+//        val userType = myPrefUserCred.getString("userType", "")
+//
+//        if (userType?.toLowerCase() == "tenant") {
+//            btn_property_detail_add_tenant.visibility = View.GONE
+//        } else {
+//
+//        }
+
         btn_property_detail_add_tenant.setOnClickListener {
             val myPref = getSharedPreferences("PropertyId", Context.MODE_PRIVATE)
             val editor = myPref.edit()
